@@ -1,0 +1,198 @@
+/* ===========================
+   usedbook_add.css (SAFE FINAL)
+   Affects ONLY usedbook_add.php
+   Add body class: ub-add
+   NO media queries
+   =========================== */
+
+:root{
+  --ub-bg: #f7f4ef;
+  --ub-card: rgba(255,255,255,0.94);
+  --ub-border: rgba(0,0,0,0.10);
+  --ub-text: #2b2b2b;
+  --ub-muted: rgba(43,43,43,0.65);
+
+  --ub-accent: #b45309;
+  --ub-accent-2: #7c2d12;
+  --ub-focus: rgba(180,83,9,0.22);
+
+  --ub-shadow: 0 18px 40px rgba(0,0,0,0.10);
+  --ub-shadow-soft: 0 12px 26px rgba(0,0,0,0.10);
+
+  --ub-radius: 18px;
+}
+
+/* ---------- PAGE (only for add page) ---------- */
+body.ub-add.km-layout{
+  color: var(--ub-text);
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(255,211,138,.45), transparent 60%),
+    radial-gradient(900px 450px at 90% 0%, rgba(180,83,9,.20), transparent 55%),
+    linear-gradient(180deg, var(--ub-bg), #fff 40%, #faf7f2 100%);
+}
+
+body.ub-add .km-main{ min-height: 70vh; }
+
+body.ub-add .km-main h1.h3{
+  font-weight: 800;
+}
+
+body.ub-add .km-main .text-muted{
+  color: var(--ub-muted) !important;
+}
+
+/* ---------- BACK BUTTON (only inside main container) ---------- */
+body.ub-add .km-main a.btn.btn-outline-secondary{
+  border-radius: 999px;
+  border-color: rgba(0,0,0,.18);
+  padding: 10px 14px;
+  transition: all .15s ease;
+}
+body.ub-add .km-main a.btn.btn-outline-secondary:hover{
+  background: rgba(0,0,0,.06);
+  color: #111;
+  box-shadow: var(--ub-shadow-soft);
+  transform: translateY(-1px);
+}
+
+/* ---------- MESSAGE ---------- */
+body.ub-add #msg{
+  border-radius: 16px !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+  backdrop-filter: blur(8px);
+}
+
+/* ---------- CARD FORM ---------- */
+body.ub-add #addForm.card{
+  background: var(--ub-card) !important;
+  border: 1px solid var(--ub-border) !important;
+  border-radius: var(--ub-radius) !important;
+  box-shadow: var(--ub-shadow);
+}
+
+/* ---------- FORM (only inside #addForm) ---------- */
+body.ub-add #addForm .form-label{
+  font-weight: 700;
+}
+
+body.ub-add #addForm .form-text{
+  color: var(--ub-muted) !important;
+}
+
+body.ub-add #addForm .form-control,
+body.ub-add #addForm .form-select{
+  border-radius: 14px !important;
+  border-color: rgba(0,0,0,.16) !important;
+  background: rgba(255,255,255,.96) !important;
+  transition: all .15s ease;
+}
+
+body.ub-add #addForm .form-control:focus,
+body.ub-add #addForm .form-select:focus{
+  border-color: rgba(180,83,9,.65) !important;
+  box-shadow: 0 0 0 .25rem var(--ub-focus) !important;
+}
+
+body.ub-add #addForm textarea.form-control{
+  line-height: 1.55;
+}
+
+/* ---------- BUTTONS (only inside #addForm) ---------- */
+body.ub-add #addForm .btn{
+  border-radius: 14px;
+  transition: all .15s ease;
+}
+body.ub-add #addForm .btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(0,0,0,.14);
+}
+body.ub-add #addForm .btn:disabled{
+  opacity: .7;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Publish button */
+body.ub-add #btnSave.btn-primary{
+  background: linear-gradient(90deg,var(--ub-accent),var(--ub-accent-2)) !important;
+  border: none !important;
+  font-weight: 800;
+}
+body.ub-add #btnSave.btn-primary:hover{
+  background: linear-gradient(90deg,#9a3412,#7c2d12) !important;
+  color: #fff !important;
+}
+
+/* cancel */
+body.ub-add #addForm .btn-outline-secondary{
+  border-width: 2px;
+}
+body.ub-add #addForm .btn-outline-secondary:hover{
+  background: rgba(0,0,0,.06) !important;
+  color: #111 !important;
+  border-color: rgba(0,0,0,.25) !important;
+}
+
+/* ---------- IMAGES (only inside #addForm) ---------- */
+body.ub-add #images{
+  padding: 10px 12px;
+}
+
+body.ub-add #images.form-control{
+  border: 2px dashed rgba(180,83,9,.30) !important;
+  background: linear-gradient(180deg,rgba(255,255,255,.65),rgba(255,255,255,.35)) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 22px rgba(0,0,0,.06);
+}
+body.ub-add #images.form-control:hover{
+  border-color: rgba(180,83,9,.45) !important;
+}
+
+body.ub-add #images::file-selector-button{
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin-right: 10px;
+  background: rgba(180,83,9,.15);
+  color: #3a220f;
+  font-weight: 800;
+  cursor: pointer;
+}
+body.ub-add #images::file-selector-button:hover{
+  background: rgba(180,83,9,.25);
+}
+
+/* ---------- PREVIEWS ---------- */
+body.ub-add #previews{
+  gap: 12px !important;
+}
+
+body.ub-add #previews > div{
+  width: 104px;
+  padding: 6px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(0,0,0,.10);
+  box-shadow: 0 10px 18px rgba(0,0,0,.08);
+  transition: all .15s ease;
+}
+body.ub-add #previews > div:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(0,0,0,.14);
+}
+
+body.ub-add #previews img{
+  width: 100% !important;
+  height: 120px !important;
+  object-fit: cover !important;
+  border-radius: 14px !important;
+  border: none !important;
+}
+
+body.ub-add #previews:empty::before{
+  content: "Тук ще се покажат снимките за преглед 👇";
+  display: block;
+  color: rgba(43,43,43,.55);
+  font-size: .95rem;
+  padding: 6px 2px;
+}

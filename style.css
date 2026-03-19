@@ -1,0 +1,412 @@
+/* ===== КнигоМания Navbar (FINAL, clean breakpoints) ===== */
+
+/* =========================================================
+   BASE
+========================================================= */
+.km-navbar{
+  background: linear-gradient(90deg, #0f6b4a, #0aa36b);
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 12px 30px rgba(0,0,0,.10);
+}
+
+.km-brand{
+  font-weight: 800;
+  letter-spacing: .2px;
+  color: #fff !important;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.km-brand-icon{
+  width: 36px;
+  height: 36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 12px;
+  background: rgba(255,255,255,.16);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+}
+
+.km-link{
+  color: rgba(255,255,255,.92) !important;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 10px 12px !important;
+  transition: .18s ease;
+}
+
+.km-link:hover{
+  background: rgba(255,255,255,.14);
+  color:#fff !important;
+  transform: translateY(-1px);
+}
+
+.km-link.active{
+  background: rgba(255,255,255,.18);
+  color:#fff !important;
+}
+
+.km-toggler{
+  border-color: rgba(255,255,255,.35) !important;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+.km-search{
+  gap:10px;
+}
+
+.km-search-input{
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.14);
+  color:#fff;
+}
+.km-search-input::placeholder{
+  color: rgba(255,255,255,.75);
+}
+.km-search-input:focus{
+  box-shadow: 0 0 0 .2rem rgba(245,158,11,.25);
+  border-color: rgba(245,158,11,.55);
+  background: rgba(255,255,255,.18);
+  color:#fff;
+}
+
+.km-search-btn{
+  border-radius: 14px;
+  border: 1px solid rgba(245,158,11,.75);
+  background: rgba(245,158,11,.95);
+  color: #1b1b1b;
+  font-weight: 700;
+  padding: 10px 14px;
+  transition: .18s ease;
+}
+.km-search-btn:hover{
+  filter: brightness(1.02);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   DROPDOWNS
+========================================================= */
+.km-dropdown{
+  border: 0;
+  border-radius: 16px;
+  padding: 10px;
+  margin-top: 10px;
+  min-width: 320px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.km-dd-item{
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 600;
+  transition: .15s ease;
+}
+
+.km-dd-item:hover{
+  background: rgba(15, 107, 74, .10);
+  transform: translateX(2px);
+}
+
+.km-divider{ opacity: .12; }
+
+.km-dropdown::-webkit-scrollbar{ width: 10px; }
+.km-dropdown::-webkit-scrollbar-thumb{
+  background: rgba(15,107,74,.25);
+  border-radius: 999px;
+}
+.km-dropdown::-webkit-scrollbar-track{
+  background: rgba(0,0,0,.04);
+  border-radius: 999px;
+}
+
+/* =========================================================
+   PROFILE BUTTON
+========================================================= */
+.km-profile-btn{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+.km-profile-btn:hover{ background: rgba(255,255,255,0.18); }
+.km-profile-btn.dropdown-toggle::after{ display: none; }
+
+/* =========================================================
+   ACTIONS SWITCH (иконки)
+   default = DESKTOP
+========================================================= */
+.km-actions-mobile{ display: none !important; }
+.km-actions-desktop{ display: flex !important; }
+
+/* =========================================================
+   ✅ DESKTOP (>=1600px)
+   - меню разпънато
+   - иконки до търсачката
+========================================================= */
+@media (min-width: 1600px){
+
+  /* бургер скрит */
+  .km-navbar .navbar-toggler{
+    display: none !important;
+  }
+
+  /* collapse винаги видим */
+  .km-navbar.navbar-expand-xxl .navbar-collapse{
+    display: flex !important;
+  }
+
+  /* desktop иконки до search */
+  .km-actions-desktop{ display: flex !important; }
+  .km-actions-mobile{ display: none !important; }
+
+  /* search + иконки на 1 ред */
+  .km-search-wrap{
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .km-search{
+    flex: 1 1 520px;
+    min-width: 320px;
+  }
+
+  .km-search .input-group{
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .km-search-btn{
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  /* иконките да не се свиват */
+  .km-actions-desktop,
+  .km-navbar .km-icon-btn,
+  .km-navbar .km-profile-btn{
+    flex: 0 0 auto;
+  }
+}
+
+/* =========================================================
+   ✅ MOBILE (<1600px)
+   - само burger
+   - менюто е collapse
+   - иконките горе до burger
+========================================================= */
+/* ===== MOBILE (<1600px) ===== */
+@media (max-width: 1599.98px){
+
+  /* ✅ най-важното: позволяваме wrap, за да падне collapse под горния ред */
+  .km-navbar .container-fluid{
+    display: flex;
+    flex-wrap: wrap;                 /* ⬅️ това оправя “изместването” */
+    align-items: center;
+  }
+
+  /* Лого вляво */
+  .km-navbar .navbar-brand{
+    order: 1;
+  }
+
+  /* Иконки + бургер вдясно */
+  .km-top-right{
+    order: 2;
+    margin-left: auto;              /* ⬅️ бутаме ги вдясно */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* burger видим */
+  .km-navbar .navbar-toggler{
+    display: inline-flex !important;
+  }
+
+  /* ✅ collapse да е отделен ред, 100% ширина */
+  .km-navbar.navbar-expand-xxl .navbar-collapse{
+    order: 3;
+    flex-basis: 100%;               /* ⬅️ нов ред */
+    width: 100%;
+    display: none !important;       /* скрито по default */
+    margin-top: 12px;
+  }
+  .km-navbar.navbar-expand-xxl .navbar-collapse.show{
+    display: block !important;      /* отваря се от burger */
+  }
+
+  /* панелът на collapse да е в твоя стил */
+  .km-navbar .navbar-collapse{
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 18px 45px rgba(0,0,0,.14);
+  }
+
+  /* менюто вертикално */
+  .km-navbar .navbar-nav{
+    flex-direction: column !important;
+  }
+  .km-navbar .navbar-nav .nav-link{
+    width: 100%;
+  }
+
+  /* search вътре да е 100% */
+  .km-search-wrap{
+    width: 100%;
+    margin-top: 10px;
+  }
+  .km-search,
+  .km-search .input-group{
+    width: 100%;
+  }
+
+  /* dropdown в collapse да е 100% */
+  .km-dropdown{
+    min-width: 100%;
+    width: 100%;
+  }
+
+  /* иконки: mobile горе до burger */
+  .km-actions-mobile{ display: flex !important; }
+  .km-actions-desktop{ display: none !important; }
+}
+
+
+/* =========================================================
+   ✅ FIX: Dropdown в collapse (Категории/Учебници) да НЕ става "бяла огромна кутия"
+   Работи за Bootstrap dropdown в мобилен режим
+========================================================= */
+@media (max-width: 1599.98px){
+
+  /* dropdown менюто да е част от панела (не absolute) */
+  .km-navbar .dropdown-menu{
+    position: static !important;
+    float: none !important;
+    transform: none !important;
+    inset: auto !important;
+    margin-top: 8px !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+
+    /* твоя стил вместо бяло */
+    background: rgba(255,255,255,.08) !important;
+    border: 1px solid rgba(255,255,255,.18) !important;
+    border-radius: 14px !important;
+    box-shadow: none !important;
+
+    /* лимит + скрол */
+    max-height: 45vh;
+    overflow: auto;
+  }
+
+  /* самите items да са "зелен" hover и да не изглеждат като bootstrap default */
+  .km-navbar .dropdown-item{
+    border-radius: 12px;
+    color: rgba(255,255,255,.92) !important;
+    font-weight: 600;
+  }
+  .km-navbar .dropdown-item:hover,
+  .km-navbar .dropdown-item:focus{
+    background: rgba(255,255,255,.12) !important;
+    color: #fff !important;
+  }
+
+  /* divider да не е черен/грозен */
+  .km-navbar .dropdown-divider{
+    border-top-color: rgba(255,255,255,.14) !important;
+    opacity: 1 !important;
+  }
+
+  /* header в dropdown да е светъл */
+  .km-navbar .dropdown-header{
+    color: rgba(255,255,255,.80) !important;
+  }
+}
+
+/* =========================================================
+   ✅ FIX: Profile dropdown да НЕ чупи navbar-а (mobile + desktop)
+   - менюто става overlay (absolute)
+========================================================= */
+
+/* 1) родителят (dropdown) да е референтна точка */
+.km-navbar .dropdown{ position: relative; }
+
+/* 2) само профил dropdown-а: позиционираме менюто absolute */
+.km-navbar .km-profile-btn + .dropdown-menu{
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  right: 0 !important;
+  left: auto !important;
+  z-index: 2000 !important;
+
+  min-width: 260px;
+  max-width: min(92vw, 340px);
+  max-height: 70vh;
+  overflow: auto;
+
+  margin-top: 0 !important; /* махаме “бутането” */
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.22);
+}
+
+/* 3) на мобилен да не излиза извън екрана */
+@media (max-width: 1599.98px){
+  .km-navbar .km-profile-btn + .dropdown-menu{
+    right: 0 !important;
+    left: auto !important;
+  }
+}
+
+/* 4) ВАЖНО: твоят fix за dropdown-menu "static" да НЕ важи за профила */
+@media (max-width: 1599.98px){
+  .km-navbar .km-profile-btn + .dropdown-menu{
+    position: absolute !important;
+    transform: none !important;
+    inset: auto !important;
+    width: auto !important;
+    min-width: 260px !important;
+  }
+}
+
+
+/* Profile dropdown – бял фон */
+.km-navbar .km-profile-btn + .dropdown-menu{
+  background: #ffffff !important;   /* ✅ бял фон */
+  color: #0f172a !important;
+  border: 1px solid rgba(0,0,0,.08) !important;
+}
+
+/* текстът вътре да е тъмен */
+.km-navbar .km-profile-btn + .dropdown-menu .dropdown-item,
+.km-navbar .km-profile-btn + .dropdown-menu .dropdown-item-text{
+  color: #0f172a !important;
+}
+
+/* hover ефект */
+.km-navbar .km-profile-btn + .dropdown-menu .dropdown-item:hover{
+  background: #f3f4f6 !important;
+  color: #0f172a !important;
+}
+
+/* divider по-светъл */
+.km-navbar .km-profile-btn + .dropdown-menu .dropdown-divider{
+  border-top-color: rgba(0,0,0,.08) !important;
+}

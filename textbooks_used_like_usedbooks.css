@@ -1,0 +1,26 @@
+/* Make TEXTBOOKS use USEDbooks look (class aliases) */
+
+/* hero */
+.ub-hero{ background: linear-gradient(135deg, #0f766e, #16a34a) !important; }
+.ub-hero-title{ text-shadow: 0 12px 26px rgba(0,0,0,.18); }
+
+/* cards + grid */
+.tb-card{ border-radius: var(--r,20px) !important; background: var(--card,rgba(255,255,255,.86)) !important; }
+.tb-card:hover{ transform: translateY(-4px); }
+
+/* filter card look */
+.ub-filter-card{ border-radius: var(--r,20px) !important; }
+
+/* buttons -> usedbooks vibe */
+.tb-btn{
+  background: linear-gradient(135deg, var(--green,#16a34a), var(--green2,#0f766e)) !important;
+}
+
+/* price pill */
+.tb-price{
+  background: rgba(22,163,74,.12) !important;
+  border: 1px solid rgba(22,163,74,.18) !important;
+}
+
+/* hearts keep working */
+.tb-like{ z-index: 6; }

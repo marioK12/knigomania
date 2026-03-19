@@ -1,0 +1,225 @@
+/* =========================================================
+   textbooks_secondhand_view.css
+   - Style for "Редактирай" button
+   - Thumbnails under main image
+   ========================================================= */
+
+/* --- Edit button (owner only) --- */
+.btn-tbs-edit{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  padding:10px 16px;
+  border-radius:14px;
+
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color:#fff !important;
+
+  font-weight:800;
+  text-decoration:none;
+  border:none;
+
+  box-shadow: 0 10px 22px rgba(37,99,235,.28);
+  transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+}
+
+.btn-tbs-edit:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 30px rgba(37,99,235,.38);
+}
+
+.btn-tbs-edit:active{
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(37,99,235,.25);
+}
+
+/* --- Thumbnails bar --- */
+.tbs-thumbs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+
+  padding:12px;
+  background:#fff;
+  border-top:1px solid rgba(15,23,42,.10);
+}
+
+.tbs-thumb{
+  width:78px;
+  height:78px;
+  padding:0;
+  border-radius:14px;
+
+  border:1px solid rgba(15,23,42,.12);
+  background: rgba(2,6,23,.02);
+  overflow:hidden;
+
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.tbs-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.tbs-thumb:hover{
+  transform: translateY(-1px);
+  border-color: rgba(37,99,235,.45);
+  box-shadow: 0 10px 18px rgba(2,6,23,.10);
+}
+
+@media (max-width: 768px){
+  .btn-tbs-edit{
+    width:100%;
+    justify-content:center;
+    margin-top:10px;
+  }
+  .tbs-thumb{ width:70px; height:70px; }
+}
+
+
+/* price column (edit button above price) */
+.tbs-view-pricecol{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:10px;
+}
+
+@media (max-width: 768px){
+  .tbs-view-pricecol{
+    align-items:stretch;
+    width:100%;
+  }
+  .tbs-view-pricecol .btn-tbs-edit{
+    width:100%;
+    justify-content:center;
+  }
+}
+
+
+/* ===============================
+   ❤️ Favorite (UI only) — secondhand view
+================================ */
+.tbs-view-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.tbs-view-fav{
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  border:1px solid rgba(15,23,42,.12);
+  background:rgba(255,255,255,.92);
+  box-shadow:0 10px 20px rgba(2,6,23,.08);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  padding:0;
+  outline:0;
+}
+
+.tbs-view-fav:hover{
+  transform:translateY(-1px);
+  box-shadow:0 16px 30px rgba(2,6,23,.12);
+}
+
+.tbs-view-fav-ico{
+  width:22px;
+  height:22px;
+  fill:transparent;
+  stroke:#cbd5e1;
+  stroke-width:2;
+  transition:fill .2s ease, stroke .2s ease, transform .2s ease;
+}
+
+.tbs-view-fav.is-active{
+  border-color:rgba(239,68,68,.35);
+}
+
+.tbs-view-fav.is-active .tbs-view-fav-ico{
+  fill:#ef4444;
+  stroke:#ef4444;
+  transform:scale(1.06);
+}
+
+  /* ============================
+   TOP BAR: Back + Edit (same row)
+============================ */
+.tbs-topbar{
+  margin-top:-46px;
+  position:relative;
+  z-index:6;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  flex-wrap:wrap;
+
+  margin-bottom: 14px; /* ✅ разстояние надолу към блока */
+}
+
+.tbs-topbar .tbs-filter2-clear{
+  flex:0 0 auto;
+}
+
+.tbs-topbar .btn-tbs-edit{
+  flex:0 0 auto;
+}
+
+/* на телефон – пак стоят добре (ако няма място, edit пада отдолу) */
+@media (max-width: 768px){
+  .tbs-topbar{
+    margin-top:-42px;
+    margin-bottom: 12px;
+  }
+  .tbs-topbar .btn-tbs-edit{
+    width:auto;          /* важно: да НЕ става 100% */
+    margin-top:0;        /* махаме предишното */
+    justify-content:center;
+  }
+}
+
+/* ============================
+   PRICE: "locked" (no stretch / no resize / no wrap)
+============================ */
+.tbs-view-pricecol{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:10px;
+}
+
+/* заключване на цената */
+.tbs-price{
+  display:inline-block;
+  width:max-content;         /* да не се разтяга */
+  max-width:max-content;
+  white-space:nowrap;        /* никога на нов ред */
+  line-height:1;
+  font-size:1.15rem;         /* една и съща стойност навсякъде */
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+/* на мобилно: пак НЕ я разтягаме */
+@media (max-width: 768px){
+  .tbs-view-pricecol{
+    align-items:flex-end;  /* да не става stretch */
+    width:auto;            /* да не взима 100% */
+  }
+  .tbs-price{
+    width:max-content;     /* остава фиксирана */
+  }
+}

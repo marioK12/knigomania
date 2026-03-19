@@ -1,0 +1,676 @@
+/* =========================================================
+   usedbooks.css — "Eco Library" theme (FINAL CLEAN)
+   - Cards styled like textbooks_secondhand.css (tbs)
+   - Smaller blocks + compact typography
+   - Image: contain (no crop)
+   - Chip on image + Heart identical
+   ========================================================= */
+
+:root{
+  --ink:#0f172a;
+  --muted:rgba(15,23,42,.62);
+
+  --bg1:#ecfff6;
+  --bg2:#f6fffb;
+
+  --card:rgba(255,255,255,.86);
+  --stroke:rgba(15,23,42,.10);
+
+  --green:#16a34a;
+  --green2:#0f766e;
+
+  --amber:#f59e0b;
+  --amber2:#d97706;
+
+  --shadow: 0 18px 50px rgba(2,6,23,.10);
+  --shadow2: 0 10px 24px rgba(2,6,23,.08);
+
+  --r:20px;
+}
+
+/* ---- page backdrop ---- */
+body.km-layout{
+  color: var(--ink);
+  background:
+    radial-gradient(900px 420px at 12% 0%, rgba(34,197,94,.18), transparent 62%),
+    radial-gradient(900px 420px at 86% 6%, rgba(20,184,166,.14), transparent 62%),
+    radial-gradient(800px 520px at 50% 90%, rgba(245,158,11,.10), transparent 60%),
+    linear-gradient(180deg, var(--bg1), #ffffff 42%, var(--bg2));
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.ub-hero{
+  position: relative;
+  overflow: hidden;
+  padding: 62px 0 36px;
+  color: #fff;
+  background:
+    radial-gradient(900px 420px at 20% 18%, rgba(255,255,255,.14), transparent 60%),
+    radial-gradient(900px 420px at 85% 12%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(120deg, #0f766e, #16a34a 55%, #22c55e);
+}
+
+.ub-hero::before{
+  content:"";
+  position:absolute; inset:-80px -120px auto -120px;
+  height: 220px;
+  background: radial-gradient(closest-side, rgba(255,255,255,.22), transparent 70%);
+  filter: blur(8px);
+  pointer-events:none;
+}
+
+.ub-hero-inner{
+  position: relative;
+  max-width: 980px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding-bottom: 120px !important;
+}
+
+.ub-hero-icons{
+  display:flex;
+  gap:12px;
+  font-size: 22px;
+  opacity: .92;
+  margin-bottom: 10px;
+}
+
+.ub-hero-title{
+  margin: 0 0 10px;
+  font-weight: 950;
+  letter-spacing: .2px;
+  text-shadow: 0 12px 26px rgba(0,0,0,.18);
+  font-size: clamp(2.2rem, 3.4vw, 3.2rem);
+}
+
+.ub-hero-subtitle{
+  margin: 8px 0 0;
+  max-width: 760px;
+  line-height: 1.55;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.95) !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,.45) !important;
+
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(6px);
+  transform: translateY(-10px);
+}
+
+/* CTA in hero is hidden (button moved into filter card) */
+.ub-hero-cta{ display:none !important; }
+
+.ub-hero-wave{
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  width:100%;
+  height: 120px;
+  fill: rgba(255,255,255,.88);
+}
+
+/* =========================================================
+   MAIN / FILTER CARD
+   ========================================================= */
+.ub-main{ padding: 24px 0 58px; }
+
+.ub-filter-wrap{
+  margin-top: 40px;
+  position: relative;
+  z-index: 5;
+}
+
+.ub-filter-card{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(15,23,42,.10);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.ub-filter-head{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ub-filter-ico{
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(135deg, rgba(34,197,94,.18), rgba(20,184,166,.16));
+  border: 1px solid rgba(15,23,42,.08);
+  box-shadow: 0 10px 20px rgba(2,6,23,.06);
+}
+
+.ub-filter-title{
+  flex: 1;
+  font-weight: 950;
+  letter-spacing: .12px;
+}
+
+/* CTA slot in filter header */
+.ub-filter-cta{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+.ub-filter-cta .btn{
+  border-radius: 999px !important;
+  font-weight: 900 !important;
+  padding: 10px 14px !important;
+  box-shadow: 0 14px 26px rgba(2,6,23,.12);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.ub-filter-cta .btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(2,6,23,.16);
+  filter: brightness(1.02);
+}
+
+.ub-label{
+  display:block;
+  margin-bottom: 6px;
+  font-weight: 900;
+  font-size: .92rem;
+  color: rgba(15,23,42,.78);
+}
+
+.ub-input{
+  border-radius: 16px !important;
+  border: 1px solid rgba(15,23,42,.14) !important;
+  background: rgba(255,255,255,.92) !important;
+  transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+}
+.ub-input:focus{
+  border-color: rgba(34,197,94,.60) !important;
+  box-shadow: 0 0 0 .25rem rgba(34,197,94,.18) !important;
+}
+.ub-input:hover{ transform: translateY(-1px); }
+
+.ub-meta{
+  margin: 18px 0 10px;
+  font-weight: 900;
+  color: rgba(15,23,42,.65);
+}
+
+/* =========================================================
+   CARD (FINAL) — like textbooks_secondhand cards
+   ========================================================= */
+.ub-card{
+  height: 100%;
+  border-radius: var(--r);
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow2);
+  overflow: hidden;
+
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+
+  opacity: 0;
+  animation: ub-pop .5s cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes ub-pop{
+  from{ opacity:0; transform: translateY(12px) scale(.985); }
+  to{ opacity:1; transform: translateY(0) scale(1); }
+}
+
+.ub-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(34,197,94,.22);
+  box-shadow: 0 22px 60px rgba(2,6,23,.14);
+}
+
+/* IMAGE AREA like tbs */
+.ub-card-media{
+  position: relative;
+  height: 190px;                 /* ✅ smaller like textbooks */
+  background: #f1f5f9;
+  overflow: hidden;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ub-card-img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;           /* ✅ no crop */
+  padding: 12px;
+  background: #f1f5f9;
+  display:block;
+
+  transition: transform .35s ease, filter .35s ease;
+}
+
+.ub-card:hover .ub-card-img{
+  transform: scale(1.04);
+  filter: contrast(1.02) saturate(1.05);
+}
+
+.ub-noimg{
+  width:100%;
+  height: 190px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: rgba(15,23,42,.45);
+  font-size: 26px;
+}
+
+/* subtle shine overlay like tbs */
+.ub-card-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(700px 220px at 10% 0%, rgba(255,255,255,.16), transparent 55%);
+  opacity: 0;
+  transition: opacity .25s ease;
+  pointer-events:none;
+}
+.ub-card:hover .ub-card-media::after{ opacity: 1; }
+
+/* tag "Втора ръка" (smaller) */
+.ub-tag{
+  position:absolute;
+  left: 12px;
+  top: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: .78rem;
+  color: #1b1206;
+  background: linear-gradient(90deg, var(--amber), var(--amber2));
+  box-shadow: 0 14px 24px rgba(0,0,0,.14);
+  z-index: 8;
+}
+
+/* category chip ON IMAGE (like tbs) */
+.ub-chip{
+  position: absolute !important;
+  left: 12px !important;
+  top: 12px !important;     /* ⬅ горе */
+  bottom: auto !important; /* ⬅ махаме долу */
+  z-index: 9;
+
+  background: rgba(255,255,255,.88);
+  border: 1px solid rgba(15,23,42,.12);
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  font-weight: 950;
+  font-size: .78rem;
+  color: rgba(15,23,42,.82);
+
+  box-shadow: 0 10px 20px rgba(2,6,23,.10);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.ub-card:hover .ub-chip{
+  transform: translateY(-1px) scale(1.03);
+  background: rgba(255,255,255,.95);
+  box-shadow: 0 10px 20px rgba(2,6,23,.10);
+}
+
+/* BODY like tbs */
+.ub-card-body{
+  padding: 12px 12px 14px;
+}
+
+/* TOP row: title left / author right */
+.ub-card-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom: 8px;
+}
+
+.ub-title{
+  font-weight: 950;
+  color: var(--ink);
+  line-height: 1.1;
+  flex: 1;
+  min-width: 0;
+}
+
+.ub-author{
+  font-weight: 850;
+  color: rgba(15,23,42,.64);
+  font-size: .92rem;
+  max-width: 45%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align:right;
+}
+
+/* META row: condition + seller */
+.ub-meta-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom: 8px;
+}
+
+.ub-cond{
+  display:inline-flex;
+  align-items:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: .82rem;
+  border: 1px solid rgba(15,23,42,.12);
+  background: rgba(34,197,94,.10);
+  color: rgba(10,42,23,.92);
+}
+
+.ub-seller{
+  max-width: 58%;
+  color: rgba(15,23,42,.62);
+  font-weight: 800;
+  font-size: .92rem;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  text-align:right;
+}
+
+/* CITY row (new) */
+.ub-city{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top: -2px;
+  margin-bottom: 10px;
+
+  font-weight: 800;
+  color: rgba(15,23,42,.65);
+  font-size: .92rem;
+}
+
+/* BOTTOM row: price + btn */
+.ub-card-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.ub-price{
+  font-weight: 950;
+  color: rgba(15,23,42,.92);
+  background: rgba(34,197,94,.14);
+  border: 1px solid rgba(34,197,94,.16);
+  padding: 6px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.ub-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 14px;        /* ✅ like tbs button shape */
+  padding: 8px 12px;          /* ✅ smaller like tbs */
+  font-weight: 900;
+  text-decoration:none;
+  color:#fff;
+
+  background: linear-gradient(135deg, #0f766e, #16a34a);
+  box-shadow: 0 16px 30px rgba(2,6,23,.12);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.ub-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 22px 44px rgba(2,6,23,.16);
+  filter: brightness(1.02);
+  color:#fff;
+}
+
+/* (we don't use old footer layout anymore) */
+.ub-card-foot{ display:none !important; }
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+.ub-empty{
+  border-radius: 22px;
+  padding: 34px 18px;
+  text-align:center;
+
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(15,23,42,.10);
+  box-shadow: var(--shadow);
+
+  opacity: 0;
+  transform: translateY(12px) scale(.99);
+  animation: ub-empty-in .42s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes ub-empty-in{ to{ opacity:1; transform: translateY(0) scale(1); } }
+
+.ub-empty-title{
+  font-weight: 950;
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+}
+.ub-empty-sub{
+  color: rgba(15,23,42,.62);
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+.ub-empty-btn{
+  border-radius: 999px !important;
+  font-weight: 950 !important;
+  padding: 10px 16px !important;
+  box-shadow: 0 14px 26px rgba(2,6,23,.10);
+}
+
+/* =========================================================
+   SKELETON
+   ========================================================= */
+.ub-skel{
+  position: relative;
+  overflow: hidden;
+  background: rgba(2,6,23,.06);
+  border-radius: 12px;
+}
+.ub-skel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
+  animation: ub-shimmer 1.2s infinite;
+}
+@keyframes ub-shimmer{ 100%{ transform: translateX(100%); } }
+
+.ub-skelcard{ opacity: 1 !important; animation: none !important; }
+
+.ub-skel-img{
+  height: 190px; /* ✅ match card image height */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.ub-skel-line{ height: 16px; margin: 10px 0; }
+.ub-skel-line.sm{ width: 62%; }
+.ub-skel-pill{ width: 96px; height: 30px; border-radius: 999px; }
+.ub-skel-btn{ width: 74px; height: 38px; border-radius: 999px; }
+
+/* =========================================================
+   Login button styled like Add
+   ========================================================= */
+.ub-filter-card .ub-login-like-add{
+  display:inline-flex !important;
+  align-items:center;
+  gap:10px;
+
+  border-radius: 999px !important;
+  padding: 10px 16px !important;
+  font-weight: 900 !important;
+
+  background: rgba(255,255,255,.92) !important;
+  color: rgba(15,23,42,.92) !important;
+
+  border: 1px solid rgba(15,23,42,.12) !important;
+  box-shadow: 0 14px 26px rgba(2,6,23,.12) !important;
+
+  text-decoration: none !important;
+}
+.ub-filter-card .ub-login-like-add:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(2,6,23,.16) !important;
+  filter: brightness(1.02);
+  color: rgba(15,23,42,.98) !important;
+}
+.ub-filter-card .ub-login-like-add .ub-plus{
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  background: rgba(15,23,42,.06);
+  border: 1px solid rgba(15,23,42,.10);
+  font-weight: 950;
+  line-height: 1;
+}
+
+/* =========================================================
+   ❤️ HEART — identical like textbooks
+   ========================================================= */
+.tb-like{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  z-index:10;
+
+  border:0;
+  padding:0;
+  outline:0;
+  user-select:none;
+
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.tb-like:hover{
+  transform:scale(1.08);
+  box-shadow:0 12px 26px rgba(0,0,0,.18);
+}
+.tb-like-ico{
+  width:20px;
+  height:20px;
+  fill:transparent;
+  stroke:#cbd5e1;
+  stroke-width:2;
+  transition:fill .2s ease, stroke .2s ease, transform .2s ease;
+}
+.tb-like.is-active .tb-like-ico{
+  fill:#ef4444;
+  stroke:#ef4444;
+  transform:scale(1.05);
+}
+
+/* MOBILE tweaks */
+@media (max-width: 420px){
+  .ub-author{ max-width: 40%; font-size: .9rem; }
+}
+
+.ub-media-link{
+  display:block;
+  text-decoration:none !important;
+  color:inherit !important;
+}
+.ub-media-link:hover{ color:inherit !important; }
+
+/* ===============================
+   STRONGER HOVER (like textbooks)
+================================ */
+
+.ub-card{
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+}
+
+.ub-card:hover{
+  transform: translateY(-6px) scale(1.01);
+
+  /* по-силен shadow */
+  box-shadow:
+    0 28px 70px rgba(2,6,23,.18),
+    0 0 0 3px rgba(34,197,94,.18);
+
+  /* лек зеленкав glow */
+  border-color: rgba(34,197,94,.45);
+  background: rgba(255,255,255,.96);
+}
+
+/* снимката да реагира по-осезаемо */
+.ub-card:hover .ub-card-img{
+  transform: scale(1.06);
+  filter: saturate(1.15) contrast(1.05);
+}
+
+/* chip-а да светва леко */
+.ub-card:hover .ub-chip{
+  background: #ffffff !important;
+  box-shadow: 0 12px 26px rgba(0,0,0,.18) !important;
+  transform: scale(1.04);
+}
+
+/* бутонът "Виж" да изпъква повече */
+.ub-card:hover .ub-btn{
+  filter: brightness(1.08);
+  box-shadow: 0 18px 36px rgba(2,6,23,.22);
+}
+
+/* =========================
+   GRID ALIGN (all devices)
+========================= */
+
+/* по default: като учебниците -> вляво */
+#grid{
+  justify-content: flex-start !important;
+}
+
+/* ако искаш на много малки екрани да изглежда по-„чисто“ -> център */
+@media (max-width: 575.98px){
+  #grid{
+    justify-content: center !important;
+  }
+}
+
+/* размерът на картите да е като учебниците (и да не стават прекалено широки) */
+.ub-card{
+  max-width: 360px;  /* можеш 340–370 според теб */
+  width: 100%;
+}

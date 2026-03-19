@@ -1,0 +1,231 @@
+/* ===========================
+   usedbook_edit.css (SAFE FINAL v2)
+   Affects ONLY the main content (not navbar)
+   Requires body class: ub-edit
+   NO media queries
+   =========================== */
+
+:root{
+  --ub-bg: #f7f4ef;
+  --ub-card: rgba(255,255,255,0.94);
+  --ub-border: rgba(0,0,0,0.10);
+  --ub-text: #2b2b2b;
+  --ub-muted: rgba(43,43,43,0.65);
+
+  --ub-accent: #b45309;
+  --ub-accent-2: #7c2d12;
+  --ub-focus: rgba(180,83,9,0.22);
+
+  --ub-shadow: 0 18px 40px rgba(0,0,0,0.10);
+  --ub-shadow-soft: 0 12px 26px rgba(0,0,0,0.10);
+
+  --ub-radius: 18px;
+}
+
+/* ---------- PAGE BACKGROUND (OK to be body-wide) ---------- */
+body.ub-edit.km-layout{
+  color: var(--ub-text);
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(255,211,138,.45), transparent 60%),
+    radial-gradient(900px 450px at 90% 0%, rgba(180,83,9,.20), transparent 55%),
+    linear-gradient(180deg, var(--ub-bg), #fff 40%, #faf7f2 100%);
+}
+
+/* EVERYTHING BELOW is scoped to main so NAVBAR is untouched */
+body.ub-edit .km-main{ min-height: 70vh; }
+
+body.ub-edit .km-main h1.h4{
+  font-weight: 800;
+}
+
+body.ub-edit .km-main .text-muted{
+  color: var(--ub-muted) !important;
+}
+
+/* Back button in main */
+body.ub-edit .km-main a.btn.btn-outline-secondary{
+  border-radius: 999px;
+  border-color: rgba(0,0,0,.18);
+  padding: 10px 14px;
+  transition: all .15s ease;
+}
+body.ub-edit .km-main a.btn.btn-outline-secondary:hover{
+  background: rgba(0,0,0,.06);
+  color: #111;
+  box-shadow: var(--ub-shadow-soft);
+  transform: translateY(-1px);
+}
+
+/* Message box */
+body.ub-edit .km-main #msg{
+  border-radius: 16px !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+  backdrop-filter: blur(8px);
+}
+
+/* Cards (only in main) */
+body.ub-edit .km-main .card{
+  background: var(--ub-card) !important;
+  border: 1px solid var(--ub-border) !important;
+  border-radius: var(--ub-radius) !important;
+  box-shadow: var(--ub-shadow);
+}
+
+body.ub-edit .km-main .card h2.h6{
+  font-weight: 800;
+}
+
+body.ub-edit .km-main .card hr{
+  border-color: rgba(0,0,0,.12);
+}
+
+/* Form */
+body.ub-edit .km-main .form-label{
+  font-weight: 700;
+}
+
+body.ub-edit .km-main .form-text{
+  color: var(--ub-muted) !important;
+}
+
+body.ub-edit .km-main .form-control,
+body.ub-edit .km-main .form-select{
+  border-radius: 14px !important;
+  border-color: rgba(0,0,0,.16) !important;
+  background: rgba(255,255,255,.96) !important;
+  transition: all .15s ease;
+}
+
+body.ub-edit .km-main .form-control:focus,
+body.ub-edit .km-main .form-select:focus{
+  border-color: rgba(180,83,9,.65) !important;
+  box-shadow: 0 0 0 .25rem var(--ub-focus) !important;
+}
+
+body.ub-edit .km-main textarea.form-control{
+  line-height: 1.55;
+}
+
+/* Buttons (only in main) */
+body.ub-edit .km-main .btn{
+  border-radius: 14px;
+  transition: all .15s ease;
+}
+body.ub-edit .km-main .btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(0,0,0,.14);
+}
+body.ub-edit .km-main .btn:disabled{
+  opacity: .7;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Save button */
+body.ub-edit .km-main #btnSave.btn-warning{
+  background: linear-gradient(90deg,#f59e0b,#d97706) !important;
+  border: none !important;
+  font-weight: 800;
+  color: #2b1705 !important;
+}
+body.ub-edit .km-main #btnSave.btn-warning:hover{
+  background: linear-gradient(90deg,#f59e0b,#b45309) !important;
+}
+
+/* Upload images button */
+body.ub-edit .km-main .btn-primary{
+  background: linear-gradient(90deg,var(--ub-accent),var(--ub-accent-2)) !important;
+  border: none !important;
+  font-weight: 800;
+}
+body.ub-edit .km-main .btn-primary:hover{
+  background: linear-gradient(90deg,#9a3412,#7c2d12) !important;
+  color: #fff !important;
+}
+
+/* outline buttons */
+body.ub-edit .km-main .btn-outline-secondary,
+body.ub-edit .km-main .btn-outline-success,
+body.ub-edit .km-main .btn-outline-danger{
+  border-width: 2px;
+}
+
+body.ub-edit .km-main .btn-outline-secondary:hover{
+  background: rgba(0,0,0,.06) !important;
+}
+body.ub-edit .km-main .btn-outline-success:hover{
+  background: linear-gradient(90deg,#16a34a,#15803d) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+body.ub-edit .km-main .btn-outline-danger:hover{
+  background: linear-gradient(90deg,#dc2626,#b91c1c) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* Images */
+body.ub-edit .km-main #imgs{
+  gap: 12px !important;
+}
+
+body.ub-edit .km-main #imgs > div.position-relative{
+  width: 118px !important;
+  padding: 6px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(0,0,0,.10);
+  box-shadow: 0 10px 18px rgba(0,0,0,.08);
+  transition: all .15s ease;
+}
+body.ub-edit .km-main #imgs > div.position-relative:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(0,0,0,.14);
+}
+
+body.ub-edit .km-main #imgs img.img-thumbnail{
+  width: 100% !important;
+  height: 150px !important;
+  border-radius: 14px !important;
+  border: none !important;
+  object-fit: cover;
+}
+
+/* delete image */
+body.ub-edit .km-main #imgs button[data-action="del-img"]{
+  width: 32px;
+  height: 32px;
+  border-radius: 999px !important;
+  background: rgba(220,53,69,.95) !important;
+  border: none !important;
+  color: #fff;
+  box-shadow: 0 10px 18px rgba(0,0,0,.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: all .15s ease;
+}
+body.ub-edit .km-main #imgs > div.position-relative:hover button[data-action="del-img"]{
+  opacity: 1;
+  pointer-events: auto;
+}
+body.ub-edit .km-main #imgs button[data-action="del-img"]:hover{
+  background: linear-gradient(135deg,#ef4444,#b91c1c) !important;
+}
+
+/* Upload form */
+body.ub-edit .km-main #addImgsForm{
+  border: 2px dashed rgba(180,83,9,.30);
+  border-radius: 16px;
+  padding: 14px;
+  background: linear-gradient(180deg,rgba(255,255,255,.65),rgba(255,255,255,.35));
+}
+
+body.ub-edit .km-main #newImages::file-selector-button{
+  border-radius: 12px;
+  border: none;
+  background: rgba(180,83,9,.15);
+  font-weight: 800;
+}
+body.ub-edit .km-main #newImages::file-selector-button:hover{
+  background: rgba(180,83,9,.25);
+}

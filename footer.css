@@ -1,0 +1,259 @@
+/* ================================ 
+   footer.css (CLEAN + STABLE) — FIXED (no flash)
+   - Sticky footer layout
+   - Clean modern footer
+   - Links always one under another
+   - No layout shifting on hover / small screens
+   ================================ */
+
+/* ===== Page layout: footer sticks to bottom ===== */
+html{
+  height: 100%;
+  min-height: 100% !important;
+
+  /* ✅ FIX: махаме html background gradient -> правеше flash при load */
+  background: transparent !important;
+}
+
+body{
+  margin: 0;
+  min-height: 100%;
+
+  /* ✅ FIX: не насилваме бяло; страниците си имат собствен фон */
+  background: transparent;
+}
+
+body.km-layout{
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+
+body.km-layout main{ flex: 1 0 auto !important; }
+body.km-layout footer{ flex-shrink: 0 !important; }
+
+/* ================================
+   FOOTER BASE
+   ================================ */
+.footer-main{
+  background: linear-gradient(90deg, #6b2f12, #8a3f16);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+/* subtle top glow line */
+.footer-main::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:2px;
+  background: linear-gradient(90deg, transparent, rgba(255,211,138,.85), transparent);
+  opacity:.65;
+}
+
+/* text */
+.footer-text{
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.6;
+  font-size: 0.95rem;
+
+  /* guard: да не раздува/чупи */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* headings */
+.footer-main h5,
+.footer-main h6{
+  letter-spacing: .4px;
+}
+
+/* divider */
+.footer-line{
+  border-color: rgba(255, 255, 255, 0.18);
+  opacity: 1;
+  margin-top: 2rem;
+  margin-bottom: 1.4rem;
+}
+
+/* bottom line */
+.footer-bottom{
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.92rem;
+  letter-spacing: 0.3px;
+  opacity: .95;
+}
+
+/* ================================
+   LINKS
+   - Always vertical
+   - NO shifting on hover (only color + underline)
+   ================================ */
+.footer-links{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  text-align: left;
+}
+
+.footer-links li{
+  margin: 0;
+}
+
+/* link look */
+.footer-links a{
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration: none;
+  transition: color .2s ease;
+  display: inline-block;
+  padding: 2px 0;
+  position: relative;
+
+  /* guard: дълги линкове да не чупят */
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* underline animation */
+.footer-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-2px;
+  width:0%;
+  height:1px;
+  background:#ffd38a;
+  transition: width .25s ease;
+  opacity:.95;
+}
+
+.footer-links a:hover{
+  color: #ffd38a;
+}
+
+.footer-links a:hover::after{
+  width: 100%;
+}
+
+/* visited да не става лилаво/синьо */
+.footer-main a:visited{
+  color: rgba(255, 255, 255, 0.86);
+}
+
+/* ================================
+   Equal spacing between footer columns
+   (stable with Bootstrap gutters)
+   ================================ */
+.footer-main .row{
+  justify-content: space-between;
+}
+
+/* breathing room inside columns */
+.footer-main .row > div{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ================================
+   Desktop / Tablet alignment
+   ================================ */
+@media (min-width: 768px){
+  .footer-main{ text-align: left; }
+  .footer-main .footer-text{ text-align: left; }
+  .footer-main .footer-links{ text-align: left; }
+}
+
+/* ================================
+   Tablet (<= 992px) — ONLY typography/padding
+   ================================ */
+@media (max-width: 992px){
+  .footer-main{
+    padding-top: 2.6rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-main h5,
+  .footer-main h6{
+    font-size: 1.05rem;
+    margin-bottom: .6rem;
+  }
+
+  .footer-text{ font-size: .93rem; }
+  .footer-links a{ font-size: .95rem; }
+  .footer-bottom{ font-size: .9rem; }
+}
+
+/* ================================
+   Phone FIX (<= 576px)
+   - НЕ центрираме колоните
+   - всичко е подредено и стабилно
+   ================================ */
+@media (max-width: 576px){
+
+  .footer-main{
+    text-align: left;
+    padding-top: 2.4rem;
+    padding-bottom: 1.8rem;
+  }
+
+  .footer-main .footer-text{
+    text-align: left;
+  }
+
+  .footer-main .footer-links{
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* ⭐ леко и красиво разстояние между секциите */
+  .footer-main .row > [class*="col-"]{
+    margin-bottom: 2rem;
+    padding-left: 3rem;
+    padding-right: 1rem;
+  }
+
+  /* малко въздух между заглавие и линкове */
+  .footer-main h5,
+  .footer-main h6{
+    margin-bottom: .75rem;
+  }
+
+  .footer-links li{
+    margin-bottom: .4rem;
+  }
+
+  .footer-links a:hover{
+    transform: none;
+  }
+
+  .footer-line{
+    margin-top: 1.4rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .footer-bottom{
+    text-align: center;
+    font-size: .85rem;
+    line-height: 1.4;
+  }
+}
+
+/* ================================
+   Very small phones (<= 380px)
+   ================================ */
+@media (max-width: 380px){
+  .footer-main h5{ font-size: 1rem; }
+  .footer-main h6{ font-size: .95rem; }
+  .footer-text{ font-size: .9rem; }
+  .footer-links a{ font-size: .9rem; }
+  .footer-bottom{ font-size: .8rem; }
+}

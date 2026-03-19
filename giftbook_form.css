@@ -1,0 +1,293 @@
+/* =========================================================
+   giftbook_form.css (v5)
+   - km-layout + km-main footer fixed
+   - subtle load animation
+   - clean card UI
+========================================================= */
+
+html, body{ height: 100%; }
+
+body.km-layout{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.km-main{ flex: 1 0 auto; }
+.footer-main{ flex-shrink: 0; }
+
+/* Page backdrop */
+.gb-form-page{ position: relative; }
+
+.gb-form-page::before{
+  content:"";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 280px;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 420px at 15% 10%, rgba(180,83,9,.16), transparent 60%),
+    radial-gradient(900px 420px at 85% 0%, rgba(124,58,237,.14), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.55), transparent 70%);
+}
+
+/* Card */
+.gb-form-card{
+  position: relative;
+  border-radius: 22px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.10);
+  box-shadow: 0 18px 55px rgba(2,6,23,.10);
+  padding: 22px 18px;
+
+  animation: gbFadeUp .55s ease both;
+  transform-origin: 50% 20%;
+}
+
+@media (min-width: 768px){
+  .gb-form-card{ padding: 26px 24px; }
+}
+
+@keyframes gbFadeUp{
+  from { opacity: 0; transform: translateY(14px) scale(.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Header */
+.gb-form-head{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-bottom: 12px;
+}
+
+.gb-badge{
+  align-self:flex-start;
+  font-weight: 900;
+  font-size: .86rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(180,83,9,.12), rgba(124,58,237,.10));
+  border: 1px solid rgba(15,23,42,.10);
+  color: rgba(15,23,42,.86);
+}
+
+.gb-form-title{
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: rgba(15,23,42,.92);
+}
+
+.gb-form-sub{
+  color: rgba(15,23,42,.62);
+  font-size: .95rem;
+}
+
+/* Alert */
+.gb-alert{
+  border-radius: 16px;
+  border: 1px solid rgba(220,38,38,.25);
+}
+
+/* Inputs */
+.gb-form-page .form-label{
+  font-weight: 800;
+  color: rgba(15,23,42,.88);
+}
+
+.gb-form-page .form-control,
+.gb-form-page .form-select{
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,.14);
+  background: rgba(255,255,255,.95);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.35);
+  transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease;
+}
+
+.gb-form-page .form-control:focus,
+.gb-form-page .form-select:focus{
+  border-color: rgba(180,83,9,.45);
+  box-shadow: 0 0 0 .25rem rgba(180,83,9,.18);
+}
+
+.gb-filehint{
+  margin-top: 6px;
+  font-weight: 900;
+  color: rgba(15,23,42,.72);
+}
+.gb-fileerr{
+  margin-top: 6px;
+  font-weight: 900;
+  color: rgba(185,28,28,.92);
+}
+
+/* Primary button */
+.gb-btn-primary{
+  font-weight: 900;
+  border-radius: 14px;
+  padding: 10px 16px;
+  border: none;
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  box-shadow: 0 14px 28px rgba(37,99,235,.22);
+  transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+}
+
+.gb-btn-primary:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 18px 36px rgba(37,99,235,.28);
+}
+
+.gb-btn-primary:active{
+  transform: translateY(0);
+  box-shadow: 0 10px 22px rgba(37,99,235,.22);
+}
+
+/* Loading state */
+.gb-btn-primary.is-loading{
+  filter: saturate(.9);
+  cursor: progress;
+  opacity: .92;
+}
+
+/* =========================================================
+   NEW action buttons design (green publish + dark cancel)
+========================================================= */
+
+.gb-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top: 8px;
+}
+
+/* CANCEL button – dark outline */
+.gb-btn-cancel{
+  appearance:none;
+  text-decoration:none;
+
+  padding: 12px 22px;
+  border-radius: 16px;
+
+  font-weight: 800;
+  letter-spacing: .2px;
+
+  color: #374151;
+  background: rgba(255,255,255,.85);
+
+  border: 1px solid rgba(15,23,42,.15);
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.06),
+    inset 0 0 0 1px rgba(255,255,255,.7);
+
+  transition: all .18s ease;
+}
+
+.gb-btn-cancel:hover{
+  background: #ffffff;
+  color:#111827;
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.10);
+}
+
+.gb-btn-cancel:active{
+  transform: translateY(0);
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.08);
+}
+
+
+
+/* =========================================================
+   Action buttons (FINAL) – green publish + soft cancel
+========================================================= */
+
+.gb-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top: 8px;
+}
+
+/* Cancel – soft glass */
+.gb-btn-cancel{
+  appearance:none;
+  text-decoration:none;
+
+  padding: 12px 22px;
+  border-radius: 16px;
+
+  font-weight: 900;
+  letter-spacing: .2px;
+
+  color: rgba(15,23,42,.82);
+  background: rgba(255,255,255,.88);
+
+  border: 1px solid rgba(15,23,42,.14);
+
+  box-shadow:
+    0 10px 26px rgba(2,6,23,.08),
+    inset 0 0 0 1px rgba(255,255,255,.65);
+
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+}
+
+.gb-btn-cancel:hover{
+  background:#fff;
+  color: rgba(15,23,42,.92);
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 34px rgba(2,6,23,.12);
+}
+
+.gb-btn-cancel:active{
+  transform: translateY(0);
+  box-shadow:
+    0 10px 24px rgba(2,6,23,.10);
+}
+
+/* Publish – green modern */
+.gb-btn-primary{
+  appearance:none;
+  border:none;
+
+  padding: 12px 26px;
+  border-radius: 16px;
+
+  font-weight: 900;
+  letter-spacing: .3px;
+
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 45%, #4ade80 100%);
+
+  box-shadow:
+    0 14px 30px rgba(22,163,74,.35),
+    inset 0 1px 0 rgba(255,255,255,.25);
+
+  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+
+.gb-btn-primary:hover{
+  transform: translateY(-1px) scale(1.02);
+  filter: brightness(1.05);
+  box-shadow:
+    0 20px 42px rgba(22,163,74,.45),
+    inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+.gb-btn-primary:active{
+  transform: translateY(0) scale(1);
+  box-shadow:
+    0 10px 22px rgba(22,163,74,.35),
+    inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+.gb-btn-primary.is-loading{
+  opacity:.82;
+  cursor: progress;
+  filter: saturate(.75);
+}
+

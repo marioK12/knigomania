@@ -1,0 +1,1206 @@
+/* =========================
+   product.css (EXACT MATCH to textbook_view.css)
+   - 1:1 look with textbook_view
+   - Keeps your km-* markup working
+   - Row 1: Cart + Heart
+   - Row 2: Back (small + short)
+   - Reviews styled exactly like textbook_view
+========================= */
+
+:root{
+  --ink:#0f172a;
+  --muted: rgba(15,23,42,.65);
+
+  --p1:#5b21b6;   /* violet */
+  --p2:#7c3aed;   /* purple */
+  --p3:#2563eb;   /* blue */
+
+  --card: rgba(255,255,255,.92);
+  --stroke: rgba(15,23,42,.10);
+
+  --shadow: 0 18px 50px rgba(2,6,23,.10);
+  --shadow2: 0 10px 24px rgba(2,6,23,.08);
+
+  --r:18px;
+}
+
+/* =========================
+   LOAD ANIMATIONS (tv)
+========================= */
+@keyframes tvFadeUp{
+  from{ opacity:0; transform: translateY(14px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+@keyframes tvPop{
+  from{ opacity:0; transform: translateY(10px) scale(.985); }
+  to{ opacity:1; transform: translateY(0) scale(1); }
+}
+
+.d-none{ display:none !important; }
+
+/* =========================
+   PAGE BACKDROP
+========================= */
+body.km-layout{
+  color: var(--ink);
+  background:
+    radial-gradient(900px 420px at 12% 0%, rgba(124,58,237,.12), transparent 62%),
+    radial-gradient(900px 420px at 86% 6%, rgba(37,99,235,.10), transparent 62%),
+    linear-gradient(180deg, #f7f5ff, #ffffff 48%, #f6f7ff);
+}
+body.km-layout.tv-anim{
+  animation: tvFadeUp .55s ease-out both;
+}
+
+/* =========================
+   WRAPPERS (match tv)
+========================= */
+.tv-wrap{ padding: 42px 0 64px; }
+.tv-container{ max-width: 1120px; }
+
+/* product wrapper compatibility */
+.km-product-wrap{
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 42px 0 64px;
+}
+
+/* =========================
+   GRID (desktop) — match tv-grid
+========================= */
+.tv-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  align-items:start;
+}
+
+/* if product uses bootstrap rows/cols, keep it okay */
+.km-product-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  align-items:start;
+}
+
+/* =========================
+   CARDS (EXACT)
+========================= */
+.tv-card,
+.km-card{
+  background: var(--card);
+  border: 1px solid rgba(124,58,237,.18);
+  border-radius: var(--r);
+  box-shadow: var(--shadow2);
+
+  opacity: 0;
+  animation: tvPop .5s ease-out forwards;
+}
+
+.tv-image-card,
+.km-img-card{
+  padding: 18px;
+  animation-delay: .08s;
+}
+
+.tv-info-card,
+.km-card-lg{
+  padding: 22px 22px 20px;
+  animation-delay: .16s;
+}
+
+/* some product pages had .reveal */
+.reveal{
+  opacity: 0;
+  animation: tvPop .5s ease-out forwards;
+}
+
+/* =========================
+   IMAGE BOX + MAIN IMAGE (EXACT)
+========================= */
+.tv-image-box{
+  border-radius: 14px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+}
+
+.tv-main-img,
+.km-product-img{
+  max-width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  display:block;
+}
+
+/* thumbs — EXACT like tv-thumbs/tv-thumb */
+.tv-thumbs,
+.km-thumbnails{
+  display:flex;
+  justify-content:center;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.tv-thumb,
+.km-thumb{
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: 1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.92);
+  padding: 6px;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.tv-thumb:hover,
+.km-thumb:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(2,6,23,.10);
+}
+
+/* if thumbs are <img> elements in product */
+.km-thumb{
+  object-fit: contain;
+}
+
+/* if thumbs are wrapper + img */
+.tv-thumb img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+}
+
+/* =========================
+   TYPO (EXACT)
+========================= */
+.tv-title,
+.km-title{
+  font-weight: 950;
+  font-size: 2rem;
+  line-height: 1.1;
+  margin: 2px 0 6px;
+}
+
+.tv-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+/* optional product meta helpers */
+.km-muted{ color: var(--muted); }
+
+.tv-author,
+.km-author{
+  color: var(--muted);
+  font-weight: 800;
+  font-size: .95rem;
+}
+
+.tv-rating,
+.km-rating{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  color: rgba(15,23,42,.75);
+  font-weight: 900;
+  font-size: .95rem;
+}
+
+.tv-stars,
+.km-stars{
+  letter-spacing: 1px;
+}
+
+/* badges */
+.tv-badges,
+.km-badges{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0 14px;
+}
+
+.tv-badge,
+.km-pill{
+  display:inline-flex;
+  align-items:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: .82rem;
+  color: #3b1a86;
+  background: rgba(124,58,237,.12);
+  border: 1px solid rgba(124,58,237,.22);
+}
+
+/* soft badge */
+.tv-badge-soft,
+.km-pill-outline{
+  color: rgba(15,23,42,.78);
+  background: rgba(15,23,42,.06);
+  border: 1px solid rgba(15,23,42,.10);
+}
+
+/* price */
+.tv-price,
+.km-price{
+  font-weight: 950;
+  font-size: 1.35rem;
+  color: #4c1d95;
+  margin: 6px 0 10px;
+}
+
+/* description — EXACT (with fadeup) */
+.tv-desc,
+.km-desc{
+  color: rgba(15,23,42,.72);
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0 0 16px;
+
+  opacity: 0;
+  animation: tvFadeUp .5s ease-out forwards;
+  animation-delay: .22s;
+}
+
+/* =========================
+   ACTIONS (EXACT like textbook_view)
+   Row 1: Cart + Heart
+   Row 2: Back (small + short)
+========================= */
+.tv-actions,
+.km-actions{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-start !important;
+}
+
+/* kill any auto push from generic .km-fav rules */
+.tv-actions .km-fav,
+.tv-actions .tv-fav,
+.km-actions .km-fav,
+.km-actions .tv-fav{
+  margin-left: 0 !important;
+}
+
+/* base button */
+.tv-btn,
+.km-btn{
+  border: 0;
+  border-radius: 14px;
+  padding: 9px 14px;
+  font-weight: 900;
+  font-size: .88rem;
+  text-decoration:none;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+
+  cursor:pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  white-space: nowrap;
+}
+
+/* cart (bigger/thicker) */
+.tv-btn-cart,
+#addToCartBtn,
+.km-btn-cart{
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: 1px solid rgba(16,185,129,.3);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(16,185,129,.22);
+
+  padding: 12px 18px;
+  font-size: .95rem;
+  font-weight: 950;
+
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.tv-btn-cart:hover,
+#addToCartBtn:hover,
+.km-btn-cart:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(16,185,129,.35);
+  filter: brightness(1.02);
+}
+
+/* ✅ Add-to-cart feedback (from your JS) */
+#addToCartBtn.is-added{
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* ❤️ fav — EXACT */
+.tv-fav,
+.km-fav,
+.km-fav-btn{
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  border:1px solid rgba(15,23,42,.12);
+  background:rgba(255,255,255,.92);
+  box-shadow:0 10px 18px rgba(2,6,23,.08);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  padding:0;
+  outline:0;
+  flex: 0 0 38px;
+}
+
+.tv-fav:hover,
+.km-fav:hover,
+.km-fav-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(2,6,23,.12);
+}
+
+.tv-fav-ico,
+.km-fav svg{
+  width:18px;
+  height:18px;
+  fill:transparent;
+  stroke:#cbd5e1;
+  stroke-width:2;
+  transition: fill .2s ease, stroke .2s ease, transform .2s ease;
+}
+
+/* active state compatibility */
+.tv-fav.is-active,
+.km-fav.liked,
+.km-fav.is-active{
+  border-color: rgba(239,68,68,.35);
+}
+.tv-fav.is-active .tv-fav-ico,
+.km-fav.liked svg,
+.km-fav.is-active svg{
+  fill:#ef4444;
+  stroke:#ef4444;
+  transform:scale(1.06);
+}
+
+/* back base look — EXACT like textbook_view */
+.tv-btn-ghost,
+.km-btn-back{
+  color: rgba(15,23,42,.78);
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.14);
+
+  width: fit-content;
+}
+.tv-btn-ghost:hover,
+.km-btn-back:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 18px rgba(2,6,23,.10);
+}
+
+/* order + FORCE Row2 but keep button short — EXACT */
+.tv-actions .tv-btn-cart,
+.km-actions #addToCartBtn,
+.km-actions .km-btn-cart{ order: 1; }
+
+.tv-actions .tv-fav,
+.km-actions .km-fav,
+.km-actions .km-fav-btn{ order: 2; }
+
+.tv-actions .tv-btn-ghost,
+.km-actions .km-btn-back{
+  order: 3;
+
+  flex-basis: 100%;        /* ✅ always new row */
+  width: fit-content;      /* ✅ stays short */
+  align-self: flex-start;  /* ✅ left */
+
+  padding: 4px 8px;        /* ✅ smaller block */
+  font-size: .75rem;
+  border-radius: 10px;
+}
+
+/* =========================
+   REVIEWS — EXACT match (copied logic)
+========================= */
+.tv-reviews,
+.km-reviews{
+  margin-top: 22px;
+}
+
+.tv-rev-grid,
+.km-rev-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items:start;
+}
+
+.tv-rev-card,
+.km-rev-card{
+  padding: 18px;
+}
+
+/* stagger like tv */
+.tv-reviews .tv-rev-card:nth-child(1){ animation-delay: .24s; }
+.tv-reviews .tv-rev-card:nth-child(2){ animation-delay: .32s; }
+
+/* headers */
+.tv-rev-head,
+.km-rev-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom: 10px;
+}
+
+.tv-rev-title,
+.km-rev-title{
+  font-weight: 950;
+  font-size: 1.08rem;
+}
+
+/* stars pick (input) */
+.tv-stars-pick,
+.km-stars-input{
+  display:flex;
+  align-items:center;
+  gap: 6px;
+  margin: 10px 0 10px;
+  flex-wrap: wrap;
+}
+
+.tv-star,
+.km-star{
+  border: 0;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgba(15,23,42,.25);
+  transition: transform .12s ease, color .12s ease;
+  padding: 0 2px;
+}
+.tv-star:hover,
+.km-star:hover{
+  transform: translateY(-1px);
+}
+.tv-star.is-on,
+.km-star.is-on{
+  color: #f59e0b;
+}
+
+.tv-stars-hint{
+  margin-left: 10px;
+  color: rgba(15,23,42,.55);
+  font-weight: 800;
+  font-size: .92rem;
+}
+
+/* textarea */
+.tv-rev-text,
+.km-textarea{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,.12);
+  padding: 12px 12px;
+  resize: vertical;
+  outline: none;
+  font-weight: 700;
+}
+.tv-rev-text:focus,
+.km-textarea:focus{
+  border-color: rgba(124,58,237,.45);
+  box-shadow: 0 0 0 .25rem rgba(124,58,237,.14);
+}
+
+/* publish button */
+.tv-publish,
+#sendReview{
+  width: 100%;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-weight: 950;
+  color:#fff;
+  background: linear-gradient(135deg, var(--p2), var(--p3));
+  box-shadow: 0 16px 28px rgba(124,58,237,.22);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.tv-publish:hover,
+#sendReview:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 40px rgba(124,58,237,.28);
+}
+
+/* notes/messages */
+.tv-rev-note{
+  margin-top: 10px;
+  color: rgba(15,23,42,.55);
+  font-weight: 800;
+  font-size: .9rem;
+}
+.tv-rev-note.is-ok{ color: rgba(22,163,74,.95); }
+.tv-rev-note.is-warn{ color: rgba(220,38,38,.92); }
+
+/* list */
+.tv-rev-list,
+#reviewsList{
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+
+/* empty */
+.tv-rev-empty{
+  color: rgba(15,23,42,.55);
+  font-weight: 800;
+  padding: 8px 2px;
+}
+
+/* one review — EXACT structure */
+.tv-one-rev,
+.km-review{
+  border-top: 1px solid rgba(15,23,42,.08);
+  padding-top: 12px;
+}
+.tv-one-rev:first-child,
+.km-review:first-child{
+  border-top: 0;
+  padding-top: 0;
+}
+
+.tv-one-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+}
+
+.tv-one-user{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* avatars (same) */
+.tv-avatar-img,
+.km-ava{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid rgba(15,23,42,.10);
+  background: rgba(124,58,237,.10);
+  flex: 0 0 auto;
+}
+
+.km-ava-fallback{
+  width:34px; height:34px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 950;
+  border: 1px solid rgba(15,23,42,.10);
+  background: rgba(124,58,237,.10);
+  color: rgba(15,23,42,.85);
+  flex: 0 0 auto;
+}
+
+.tv-user-name,
+.km-review-user span{
+  font-weight: 950;
+  font-size: .95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.tv-user-date,
+.small{
+  color: rgba(15,23,42,.55);
+  font-weight: 800;
+  font-size: .82rem;
+}
+
+.tv-one-stars,
+.km-review-stars{
+  font-weight: 950;
+  color: rgba(15,23,42,.70);
+  letter-spacing: 1px;
+  flex: 0 0 auto;
+}
+
+.tv-one-text,
+.km-review-msg{
+  margin-top: 8px;
+  color: rgba(15,23,42,.78);
+  font-weight: 700;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+/* =========================
+   RESPONSIVE — EXACT breakpoints
+========================= */
+@media (max-width: 992px){
+  .tv-container{ max-width: 920px; }
+  .km-product-wrap{ max-width: 920px; }
+}
+
+@media (max-width: 768px){
+  .tv-wrap{ padding: 22px 0 44px; }
+  .km-product-wrap{ padding: 22px 0 44px; }
+
+  .tv-grid,
+  .km-product-grid{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .tv-main-img,
+  .km-product-img{
+    max-height: 420px;
+  }
+
+  .tv-rev-grid,
+  .km-rev-grid{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .tv-title,
+  .km-title{
+    font-size: 1.55rem;
+  }
+
+  .tv-image-card,
+  .km-img-card{
+    padding: 14px;
+  }
+
+  .tv-info-card,
+  .km-card-lg{
+    padding: 16px;
+  }
+
+  .tv-rev-card,
+  .km-rev-card{
+    padding: 16px;
+  }
+
+  .tv-thumb,
+  .km-thumb{
+    width: 52px;
+    height: 52px;
+  }
+
+  .tv-actions,
+  .km-actions{
+    gap: 8px;
+  }
+}
+
+@media (max-width: 420px){
+  .tv-main-img,
+  .km-product-img{
+    max-height: 340px;
+  }
+
+  .tv-stars-hint{ margin-left: 6px; }
+
+  .tv-user-name{ max-width: 160px; }
+  .km-review-user span{ max-width: 160px; }
+}
+
+/* =========================
+   "Already have review" block (like screenshot)
+========================= */
+.tv-already{
+  margin-top: 6px;
+}
+
+.tv-already-text{
+  margin: 8px 0 12px;
+  color: rgba(220,38,38,.92);
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.tv-edit-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #2563eb;
+  font-weight: 950;
+  text-decoration: none;
+
+  padding: 6px 10px;
+  border-radius: 12px;
+
+  transition: transform .15s ease, background .15s ease;
+}
+.tv-edit-link:hover{
+  background: rgba(37,99,235,.06);
+  transform: translateY(-1px);
+  text-decoration: underline;
+}
+
+.tv-see-btn{
+  width: 100%;
+  margin-top: 12px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(15,23,42,.12);
+  background: rgba(255,255,255,.92);
+
+  padding: 9px 12px;
+  font-weight: 900;
+  font-size: .9rem;
+  color: rgba(15,23,42,.72);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.tv-see-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 18px rgba(2,6,23,.10);
+  filter: brightness(1.01);
+}
+
+/* =========================
+   FIX: Review action buttons (like textbook_view)
+   - Like / Edit / Delete / Save / Cancel become soft pills
+========================= */
+
+/* container (icons + buttons row) */
+#reviewsList .d-flex.align-items-center.gap-2.flex-wrap{
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+/* --- Like button (heart + count) --- */
+.km-like-btn{
+  border: 1px solid rgba(15,23,42,.12) !important;
+  background: rgba(15,23,42,.04) !important;
+  border-radius: 999px !important;
+  padding: 7px 10px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+
+  font-weight: 900 !important;
+  line-height: 1 !important;
+
+  box-shadow: none !important;
+  outline: none !important;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.km-like-btn:hover{
+  transform: translateY(-1px);
+}
+.km-like-btn.active{
+  border-color: rgba(239,68,68,.30) !important;
+  background: rgba(239,68,68,.06) !important;
+}
+.km-like-ico{
+  font-size: 16px;
+  line-height: 1;
+}
+.km-like-count{
+  font-size: 13px;
+  font-weight: 950;
+}
+
+/* --- Edit / Save / Cancel / Delete pills --- */
+.km-edit-btn,
+.km-save-btn,
+.km-cancel-btn,
+.km-del-btn{
+  border: 1px solid rgba(15,23,42,.12) !important;
+  background: rgba(15,23,42,.04) !important;
+  border-radius: 999px !important;
+  padding: 7px 10px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+
+  font-weight: 900 !important;
+  line-height: 1 !important;
+
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer;
+
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.km-edit-btn:hover,
+.km-save-btn:hover,
+.km-cancel-btn:hover,
+.km-del-btn:hover{
+  transform: translateY(-1px);
+}
+
+/* save = green */
+.km-save-btn{
+  border-color: rgba(22,163,74,.25) !important;
+  background: rgba(22,163,74,.10) !important;
+}
+
+/* cancel = neutral */
+.km-cancel-btn{
+  background: rgba(15,23,42,.03) !important;
+}
+
+/* delete = red */
+.km-del-btn{
+  border-color: rgba(220,38,38,.25) !important;
+  background: rgba(220,38,38,.08) !important;
+}
+.km-del-ico{ font-size: 15px; line-height: 1; }
+.km-del-txt{ font-weight: 900; }
+
+/* --- Stars + controls spacing (prettier) --- */
+.km-review-stars{
+  font-weight: 950;
+  letter-spacing: 1px;
+  color: rgba(15,23,42,.70);
+}
+
+/* if any buttons look "boxed" because of bootstrap focus */
+.km-like-btn:focus,
+.km-edit-btn:focus,
+.km-save-btn:focus,
+.km-cancel-btn:focus,
+.km-del-btn:focus{
+  outline: none !important;
+  box-shadow: 0 0 0 .25rem rgba(124,58,237,.12) !important;
+}
+
+/* =========================================================
+   FINAL OVERRIDE: Make product reviews 1:1 like textbook_view
+   (fixes boxed buttons + alignment)
+========================================================= */
+
+/* review wrapper becomes tv-like */
+#reviewsList .km-review{
+  border-top: 1px solid rgba(15,23,42,.08) !important;
+  padding-top: 12px !important;
+}
+#reviewsList .km-review:first-child{
+  border-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* top row in each review */
+#reviewsList .km-review > .d-flex.justify-content-between.align-items-center.gap-2{
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+/* left user part */
+#reviewsList .km-review-user{
+  display:flex !important;
+  align-items:center !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+}
+#reviewsList .km-review-user span{
+  font-weight: 950 !important;
+  font-size: .95rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 220px !important;
+}
+
+/* right actions row */
+#reviewsList .km-review > .d-flex.justify-content-between.align-items-center.gap-2
+  > .d-flex.align-items-center.gap-2.flex-wrap{
+  gap: 10px !important;
+  align-items: center !important;
+}
+
+/* stars look like tv */
+#reviewsList .km-review-stars{
+  font-weight: 950 !important;
+  color: rgba(15,23,42,.70) !important;
+  letter-spacing: 1px !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* message text like tv */
+#reviewsList .km-review-msg{
+  margin-top: 8px !important;
+  color: rgba(15,23,42,.78) !important;
+  font-weight: 700 !important;
+  line-height: 1.55 !important;
+  white-space: pre-wrap !important;
+}
+
+/* date small like tv */
+#reviewsList .km-muted.small{
+  color: rgba(15,23,42,.55) !important;
+  font-weight: 800 !important;
+  font-size: .82rem !important;
+}
+
+/* =========================================================
+   BUTTONS: hard override to remove "boxed" / bootstrap look
+========================================================= */
+
+/* normalize all review action buttons */
+#reviewsList button.km-like-btn,
+#reviewsList button.km-edit-btn,
+#reviewsList button.km-del-btn,
+#reviewsList button.km-save-btn,
+#reviewsList button.km-cancel-btn{
+  -webkit-appearance: none !important;
+  appearance: none !important;
+
+  border: 1px solid rgba(15,23,42,.12) !important;
+  background: rgba(15,23,42,.04) !important;
+  color: rgba(15,23,42,.85) !important;
+
+  border-radius: 999px !important;
+  padding: 7px 10px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  font-weight: 900 !important;
+  font-size: .9rem !important;
+  line-height: 1 !important;
+
+  box-shadow: none !important;
+  outline: none !important;
+
+  cursor: pointer !important;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease !important;
+}
+
+#reviewsList button.km-like-btn:hover,
+#reviewsList button.km-edit-btn:hover,
+#reviewsList button.km-del-btn:hover,
+#reviewsList button.km-save-btn:hover,
+#reviewsList button.km-cancel-btn:hover{
+  transform: translateY(-1px) !important;
+}
+
+/* Focus ring like textbook_view */
+#reviewsList button.km-like-btn:focus,
+#reviewsList button.km-edit-btn:focus,
+#reviewsList button.km-del-btn:focus,
+#reviewsList button.km-save-btn:focus,
+#reviewsList button.km-cancel-btn:focus{
+  outline: none !important;
+  box-shadow: 0 0 0 .25rem rgba(124,58,237,.12) !important;
+}
+
+/* like active */
+#reviewsList button.km-like-btn.active{
+  border-color: rgba(239,68,68,.30) !important;
+  background: rgba(239,68,68,.06) !important;
+}
+
+/* save green */
+#reviewsList button.km-save-btn{
+  border-color: rgba(22,163,74,.25) !important;
+  background: rgba(22,163,74,.10) !important;
+}
+
+/* delete red */
+#reviewsList button.km-del-btn{
+  border-color: rgba(220,38,38,.25) !important;
+  background: rgba(220,38,38,.08) !important;
+}
+
+/* edit slightly blue (optional, matches tv feel) */
+#reviewsList button.km-edit-btn{
+  border-color: rgba(59,130,246,.25) !important;
+  background: rgba(59,130,246,.08) !important;
+}
+
+/* icon sizes */
+#reviewsList .km-like-ico{ font-size: 16px !important; line-height: 1 !important; }
+#reviewsList .km-like-count{ font-size: 13px !important; font-weight: 950 !important; }
+#reviewsList .km-del-ico{ font-size: 15px !important; line-height: 1 !important; }
+#reviewsList .km-del-txt{ font-weight: 900 !important; }
+
+/* mobile same truncation as tv */
+@media (max-width: 420px){
+  #reviewsList .km-review-user span{ max-width: 160px !important; }
+}
+
+/* =========================
+   FIX (FINAL): Review action buttons = 1:1 like textbook_view
+   Put this at the VERY END of product.css
+========================= */
+
+/* kill bootstrap/button defaults that make them "boxed" */
+#reviewsList button{
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* actions row */
+#reviewsList .tv-one-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+/* base pill */
+#reviewsList .tv-pill-btn{
+  border: 1px solid rgba(15,23,42,.12) !important;
+  background: rgba(15,23,42,.04) !important;
+  border-radius: 999px !important;
+  padding: 7px 10px !important;
+
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:8px !important;
+
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  color: rgba(15,23,42,.85) !important;
+
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease !important;
+}
+
+#reviewsList .tv-pill-btn:hover{
+  transform: translateY(-1px);
+}
+
+/* like */
+#reviewsList .tv-pill-like{
+  border-color: rgba(239,68,68,.30) !important;
+  background: rgba(239,68,68,.06) !important;
+}
+#reviewsList .tv-pill-like.active{
+  border-color: rgba(239,68,68,.45) !important;
+  background: rgba(239,68,68,.10) !important;
+}
+#reviewsList .tv-like-count{
+  font-size: 13px;
+  font-weight: 950;
+}
+
+/* edit */
+#reviewsList .tv-pill-edit{
+  border-color: rgba(59,130,246,.25) !important;
+  background: rgba(59,130,246,.08) !important;
+}
+
+/* delete */
+#reviewsList .tv-pill-del{
+  border-color: rgba(220,38,38,.25) !important;
+  background: rgba(220,38,38,.08) !important;
+}
+
+/* save/cancel (edit mode) */
+#reviewsList .tv-pill-save{
+  border-color: rgba(22,163,74,.25) !important;
+  background: rgba(22,163,74,.10) !important;
+}
+#reviewsList .tv-pill-cancel{
+  border-color: rgba(15,23,42,.12) !important;
+  background: rgba(15,23,42,.03) !important;
+}
+
+/* focus like tv */
+#reviewsList .tv-pill-btn:focus{
+  outline:none !important;
+  box-shadow: 0 0 0 .25rem rgba(124,58,237,.12) !important;
+}
+
+/* =========================
+   1:1 like textbook_view: names bold + avatar fallback (KC style)
+   PUT THIS AT THE VERY END OF product.css
+========================= */
+
+/* Names (strong + clean) */
+#reviewsList .tv-user-name{
+  font-weight: 950 !important;
+  font-size: .98rem !important;
+  color: var(--ink) !important;
+}
+
+/* Date under name */
+#reviewsList .tv-user-date{
+  color: rgba(15,23,42,.55) !important;
+  font-weight: 800 !important;
+  font-size: .82rem !important;
+}
+
+/* Avatar image (keep as is but make sure it’s round) */
+#reviewsList .tv-avatar-img{
+  border-radius: 999px !important;
+}
+
+/* ✅ Fallback avatar = dark circle with white initials (like KC) */
+.km-ava-fallback{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: rgba(71, 85, 105, 1); /* slate */
+  color: #fff;
+
+  font-weight: 950;
+  font-size: .85rem;
+  letter-spacing: .5px;
+
+  border: 1px solid rgba(15,23,42,.12);
+  box-shadow: 0 8px 18px rgba(2,6,23,.10);
+  flex: 0 0 auto;
+}
+
+/* If you show bigger avatar in "Пишеш като ..." keep same style */
+.km-review-author .km-ava-fallback{
+  width: 40px;
+  height: 40px;
+  font-size: .95rem;
+}
+

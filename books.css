@@ -1,0 +1,312 @@
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeUp 0.75s ease-out forwards;
+}
+
+/* =========================
+   Main spacing (optional)
+========================= */
+.km-main{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* =========================
+   Filters
+========================= */
+.km-filters{
+  background: #fff;
+  border: 2px solid rgba(245, 158, 11, 0.28);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   Empty state
+========================= */
+.km-empty{
+  background: #fff;
+  border: 2px dashed rgba(245, 158, 11, 0.55);
+  border-radius: 18px;
+  padding: 3rem 2rem;
+}
+
+/* Разстояние под empty state */
+#emptyState{
+  margin-bottom: 4rem;
+}
+
+/* =========================
+   Book Card
+========================= */
+.km-book-card{
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+
+  border: 2px solid rgba(245, 158, 11, 0.32);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.10),
+    0 0 0 1px rgba(245, 158, 11, 0.12);
+
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  will-change: transform;
+}
+
+.km-book-card:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.16),
+    0 0 0 1px rgba(245, 158, 11, 0.22);
+}
+
+/* =========================
+   Badges
+========================= */
+.km-badges{
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+  flex-wrap: wrap;
+}
+
+.km-badge{
+  font-size: 0.78rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  border: 1px solid rgba(0,0,0,0.06);
+  backdrop-filter: blur(6px);
+}
+
+.km-badge-accent{
+  background: rgba(251, 146, 60, 0.18);
+  color: #9a3412;
+}
+
+.km-badge-green{
+  background: rgba(34, 197, 94, 0.14);
+  color: #166534;
+}
+
+
+/* ❤️ Like (IDENTICAL to usedbooks/textbooks) */
+.km-book-card{ position:relative; }
+
+.km-fav{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  z-index:10;
+
+  border:0;
+  padding:0;
+  outline:0;
+
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.km-fav:hover{
+  transform:scale(1.08);
+  box-shadow:0 12px 26px rgba(0,0,0,.18);
+}
+
+.km-fav-ico{
+  width:20px;
+  height:20px;
+  fill:transparent;
+  stroke:#cbd5e1;
+  stroke-width:2;
+  stroke-linecap:round;     /* ✅ това често липсва и прави разлика */
+  stroke-linejoin:round;    /* ✅ това също */
+  transition:fill .2s ease, stroke .2s ease, transform .2s ease;
+}
+
+/* ✅ Works with: .active, .liked, .is-active */
+.km-fav.active .km-fav-ico,
+.km-fav.liked .km-fav-ico,
+.km-fav.is-active .km-fav-ico{
+  fill:#ef4444;
+  stroke:#ef4444;
+  transform:scale(1.05);
+}
+
+
+
+
+/* =========================
+   Image
+========================= */
+/* =========================
+   Image (LIKE textbooks.css)
+========================= */
+.km-book-img{
+  width: 100%;
+  height: 230px;                 /* 1:1 с tb-img (230px) */
+  object-fit: contain;           /* ✅ show whole image */
+  object-position: center;
+
+  background: rgba(241,245,249,.8); /* като tb-media/tb-img */
+  display: block;
+
+  transform: scale(1);
+  transition: transform .25s ease, filter .25s ease;
+  padding: 0;                    /* в textbooks няма padding */
+}
+
+.km-book-card:hover .km-book-img{
+  transform: scale(1.03);
+  filter: saturate(1.05);
+}
+
+/* =========================
+   ✅ Make image clickable
+========================= */
+
+/* ако img е вътре в <a>, това гарантира клика */
+.km-book-card a{
+  position: relative;
+  z-index: 2;
+}
+
+/* самата снимка да дава "може да се цъка" */
+.km-book-img{
+  cursor: pointer;          /* ✅ показва, че е кликаемо */
+  pointer-events: auto;     /* ✅ позволява клик върху img */
+}
+
+/* ако имаш badges/етикети върху снимката – да не пречат на клика */
+.km-badges{
+  pointer-events: none;     /* ✅ не хваща клик */
+}
+
+/* BUT: сърцето трябва да си остане кликаемо */
+.km-fav{
+  pointer-events: auto;     /* ✅ остава кликаемо */
+  z-index: 10;
+}
+
+/* optional: приятно “focus” ако е линк (keyboard) */
+.km-book-card a:focus-visible .km-book-img{
+  outline: 3px solid rgba(245,158,11,.35);
+  outline-offset: -3px;
+  border-radius: 12px;
+}
+
+
+/* =========================
+   Card body
+========================= */
+.km-book-body{
+  padding: 14px 14px 16px;
+}
+
+.km-category-pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: rgba(245, 158, 11, 0.14);
+  color: #9a3412;
+  border: 1px solid rgba(245, 158, 11, 0.18);
+}
+
+.km-book-title{
+  margin: 10px 0 4px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+
+  min-height: 2.4em;
+}
+
+.km-book-author{
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.km-book-desc{
+  color: #374151;
+  font-size: 0.92rem;
+  line-height: 1.35;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+
+  min-height: 3.9em;
+  margin-bottom: 10px;
+}
+
+.km-stars{
+  font-size: 0.98rem;
+  letter-spacing: 1px;
+  color: #f59e0b;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   Card footer
+========================= */
+.km-book-footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.km-price{
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: #8a4b17;
+}
+
+.km-btn{
+  border-radius: 12px;
+  font-weight: 800;
+  padding: 7px 12px;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.12);
+  color: #9a3412;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.km-btn:hover{
+  transform: translateY(-1px);
+  background: rgba(245, 158, 11, 0.18);
+}

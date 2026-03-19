@@ -1,0 +1,402 @@
+/* =========================================================
+   message.css (CLEAN FINAL)
+   - Premium Inbox / Threads
+   - Full-width HERO + centered
+   - Animations replay via body.km-anim (JS toggles)
+   - Removed duplicate animation code + redundant nth-child rules
+========================================================= */
+
+:root{
+  --ink:#0f172a;
+  --muted:rgba(15,23,42,.62);
+
+  --bg1:#ecfff6;
+  --bg2:#f6fffb;
+
+  --card:rgba(255,255,255,.92);
+  --stroke:rgba(15,23,42,.10);
+
+  --green:#16a34a;
+  --green2:#0f766e;
+
+  --shadow: 0 22px 70px rgba(2,6,23,.14);
+  --shadow2: 0 12px 26px rgba(2,6,23,.10);
+
+  --r:22px;
+
+  --ease-out: cubic-bezier(.18,.9,.2,1);
+  --glow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 18px 55px rgba(2,6,23,.10);
+}
+
+/* =========================
+   KEYFRAMES
+========================= */
+@keyframes kmFadeUp{
+  from{ opacity:0; transform: translateY(12px); filter: blur(3px); }
+  to  { opacity:1; transform: translateY(0);  filter: blur(0); }
+}
+@keyframes kmPop{
+  from{ opacity:0; transform: translateY(12px) scale(.985); }
+  to  { opacity:1; transform: translateY(0)   scale(1); }
+}
+/* sheen = background-position sweep */
+@keyframes kmSheen{
+  from{ background-position: center, -220px 0; opacity: 0; }
+  20% { opacity: .55; }
+  to  { background-position: center, 520px 0; opacity: 0; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
+
+/* =========================
+   PAGE BG
+========================= */
+.km-layout{
+  overflow-x:hidden;
+  background:
+    radial-gradient(1200px 700px at 10% -10%, rgba(22,163,74,.22), transparent 55%),
+    radial-gradient(900px 600px at 95% 0%, rgba(15,118,110,.20), transparent 52%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+  color: var(--ink);
+}
+
+.km-main{ min-height: calc(100vh - 120px); }
+
+/* =========================
+   CONTAINER
+========================= */
+.msg-inbox{ max-width: 980px; }
+
+/* =========================================================
+   HERO (full width, centered)
+========================================================= */
+.msg-topbar{
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  margin-bottom: 28px;
+  min-height: 220px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  border-radius: 0;
+  padding: 18px;
+
+  color:#fff;
+  overflow:hidden;
+
+  background:
+    radial-gradient(900px 360px at 15% 0%, rgba(255,255,255,.18), transparent 60%),
+    radial-gradient(800px 340px at 85% 10%, rgba(255,255,255,.14), transparent 60%),
+    linear-gradient(135deg, #0f766e, #16a34a 55%, #22c55e);
+
+  box-shadow:
+    0 26px 70px rgba(2,6,23,.26),
+    inset 0 0 0 1px rgba(255,255,255,.22);
+}
+
+.msg-topbar::before{
+  content:"";
+  position:absolute;
+  inset:-45% -12% auto auto;
+  width:420px;
+  height:420px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), transparent 60%);
+  transform: rotate(18deg);
+  pointer-events:none;
+}
+
+.msg-topbar::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:75px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(236,255,246,.96));
+  pointer-events:none;
+}
+
+.msg-hero-inner{
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+}
+
+.msg-hero-icons{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-bottom: 10px;
+  font-size: 1.65rem;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.22));
+}
+
+.msg-title{
+  font-weight: 1000;
+  letter-spacing: .2px;
+  line-height: 1.06;
+  font-size: clamp(2.0rem, 3.2vw, 2.85rem);
+  color:#fff;
+}
+
+.msg-subtitle{
+  display:inline-block;
+  margin-top: 12px;
+  padding: 6px 14px;
+
+  font-size: .98rem;
+  font-weight: 800;
+
+  color: rgba(255,255,255,.95);
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.26);
+  border-radius: 999px;
+
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.14);
+}
+
+@media (max-width: 640px){
+  .msg-topbar{ min-height: 180px; padding: 16px 14px; }
+  .msg-title{ font-size: 1.8rem; }
+  .msg-subtitle{ font-size: .92rem; }
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.msg-empty{
+  margin-top: 14px;
+  padding: 18px 16px;
+  border-radius: calc(var(--r) + 4px);
+  border: 1px dashed rgba(15,23,42,.18);
+  background: rgba(255,255,255,.72);
+  color: rgba(15,23,42,.72);
+}
+
+/* =========================
+   THREAD CARD
+========================= */
+.msg-thread{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+
+  text-decoration:none;
+  color: inherit;
+
+  padding: 14px;
+  margin: 10px 0;
+
+  border-radius: calc(var(--r) + 6px);
+  background: var(--card);
+  border: 1px solid rgba(15,23,42,.10);
+
+  box-shadow: var(--shadow2), var(--glow);
+  backdrop-filter: blur(10px);
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform .14s var(--ease-out),
+    box-shadow .14s var(--ease-out),
+    border-color .14s var(--ease-out),
+    filter .14s var(--ease-out);
+}
+
+.msg-thread::before{
+  content:"";
+  position:absolute;
+  inset:-120px -40px auto auto;
+  width: 280px;
+  height: 280px;
+
+  background:
+    radial-gradient(circle at 30% 30%, rgba(22,163,74,.18), transparent 60%),
+    linear-gradient(90deg, transparent 0%, rgba(255,255,255,.35) 45%, rgba(255,255,255,.18) 55%, transparent 100%);
+  background-size: auto, 220px 100%;
+  background-repeat: no-repeat;
+  background-position: center, -220px 0;
+
+  transform: rotate(18deg);
+  pointer-events:none;
+  opacity: 0;
+}
+
+.msg-thread::after{
+  content:"";
+  position:absolute;
+  inset: 10px auto 10px 10px;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(22,163,74,.0), rgba(22,163,74,.0));
+  transition: background .12s ease;
+  pointer-events:none;
+}
+
+.msg-thread:hover{
+  transform: translateY(-2px);
+  border-color: rgba(22,163,74,.26);
+  box-shadow: 0 26px 58px rgba(2,6,23,.16), 0 0 0 1px rgba(22,163,74,.14) inset;
+  filter: saturate(1.02);
+}
+.msg-thread:hover::after{
+  background: linear-gradient(180deg, rgba(22,163,74,.0), rgba(22,163,74,.85), rgba(15,118,110,.75));
+}
+.msg-thread:active{ transform: translateY(-1px); }
+
+.msg-thread-left{ min-width:0; flex:1; position:relative; z-index:1; }
+
+.msg-thread-title{
+  font-weight: 900;
+  font-size: 1.06rem;
+  letter-spacing: .15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.msg-thread-meta{
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: .92rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* badges */
+.msg-unread{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-width: 36px;
+  height: 30px;
+  padding: 0 10px;
+
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: .92rem;
+
+  color:#fff;
+  background: linear-gradient(135deg, rgba(22,163,74,1), rgba(15,118,110,1));
+  box-shadow: 0 14px 24px rgba(22,163,74,.22);
+  position:relative;
+  z-index:1;
+}
+
+.msg-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+
+  font-weight: 900;
+  font-size: .90rem;
+
+  color: rgba(15,23,42,.80);
+  border: 1px solid rgba(15,23,42,.14);
+  background: rgba(255,255,255,.80);
+  box-shadow: 0 10px 18px rgba(2,6,23,.06);
+  position:relative;
+  z-index:1;
+}
+
+/* =========================================================
+   ANIMATION CONTROL (replay via JS: body.km-anim)
+   - No duplicated animation rules in base styles
+========================================================= */
+
+/* default: no animation */
+.msg-topbar,
+.msg-empty,
+.msg-thread,
+.msg-thread::before{
+  animation: none;
+}
+
+/* run only when JS toggles class */
+body.km-anim .msg-topbar{
+  animation: kmFadeUp .60s var(--ease-out) both;
+}
+body.km-anim .msg-hero-icons{
+  animation: kmPop .55s var(--ease-out) both;
+  animation-delay: .08s;
+}
+body.km-anim .msg-empty{
+  animation: kmFadeUp .60s var(--ease-out) both;
+  animation-delay: .10s;
+}
+body.km-anim .msg-thread{
+  animation: kmPop .60s var(--ease-out) both;
+  will-change: transform, opacity;
+}
+body.km-anim .msg-thread::before{
+  animation: kmSheen .95s var(--ease-out) both;
+  animation-delay: .22s;
+}
+
+/* stagger (first 10) */
+body.km-anim .msg-thread:nth-of-type(1){  animation-delay: .12s; }
+body.km-anim .msg-thread:nth-of-type(2){  animation-delay: .16s; }
+body.km-anim .msg-thread:nth-of-type(3){  animation-delay: .20s; }
+body.km-anim .msg-thread:nth-of-type(4){  animation-delay: .24s; }
+body.km-anim .msg-thread:nth-of-type(5){  animation-delay: .28s; }
+body.km-anim .msg-thread:nth-of-type(6){  animation-delay: .32s; }
+body.km-anim .msg-thread:nth-of-type(7){  animation-delay: .36s; }
+body.km-anim .msg-thread:nth-of-type(8){  animation-delay: .40s; }
+body.km-anim .msg-thread:nth-of-type(9){  animation-delay: .44s; }
+body.km-anim .msg-thread:nth-of-type(10){ animation-delay: .48s; }
+
+/* =========================================================
+   FORCE REPLAY ANIMATIONS (PUT ABSOLUTELY LAST)
+========================================================= */
+
+body.km-anim .msg-topbar{
+  animation: kmFadeUp .60s var(--ease-out) both !important;
+}
+
+body.km-anim .msg-hero-icons{
+  animation: kmPop .55s var(--ease-out) both !important;
+  animation-delay: .08s !important;
+}
+
+body.km-anim .msg-empty{
+  animation: kmFadeUp .60s var(--ease-out) both !important;
+  animation-delay: .10s !important;
+}
+
+body.km-anim .msg-thread{
+  animation: kmPop .60s var(--ease-out) both !important;
+  will-change: transform, opacity;
+}
+
+body.km-anim .msg-thread::before{
+  animation: kmSheen .95s var(--ease-out) both !important;
+  animation-delay: .22s !important;
+}
+
+/* stagger */
+body.km-anim .msg-thread:nth-of-type(1){  animation-delay: .12s !important; }
+body.km-anim .msg-thread:nth-of-type(2){  animation-delay: .16s !important; }
+body.km-anim .msg-thread:nth-of-type(3){  animation-delay: .20s !important; }
+body.km-anim .msg-thread:nth-of-type(4){  animation-delay: .24s !important; }
+body.km-anim .msg-thread:nth-of-type(5){  animation-delay: .28s !important; }
+body.km-anim .msg-thread:nth-of-type(6){  animation-delay: .32s !important; }
+body.km-anim .msg-thread:nth-of-type(7){  animation-delay: .36s !important; }
+body.km-anim .msg-thread:nth-of-type(8){  animation-delay: .40s !important; }
+body.km-anim .msg-thread:nth-of-type(9){  animation-delay: .44s !important; }
+body.km-anim .msg-thread:nth-of-type(10){ animation-delay: .48s !important; }

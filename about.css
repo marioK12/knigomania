@@ -1,0 +1,149 @@
+.hero-orange {
+  background: linear-gradient(135deg, #c2410c, #fb923c);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Анимация при зареждане */
+.story-anim {
+  opacity: 0;                     /* важно */
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+/* Hover ефект */
+.story-box {
+  border: 2px solid #f59e0b;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(245, 158, 11, 0.2);
+
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+.story-box:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.16),
+    0 0 0 1px rgba(245, 158, 11, 0.25);
+}
+
+/* Иконки в кръг */
+.value-icon{
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+}
+
+/* Цветове на иконките */
+.icon-orange { background: #f59e0b; }
+.icon-blue   { background: #3b82f6; }
+.icon-green  { background: #22c55e; }
+.icon-purple { background: #a855f7; }
+
+/* Карта: бордер + сянка + hover */
+.value-card{
+  border: 2px solid #f59e0b; /* жълто-оранжев бордер като историята */
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.10),
+    0 0 0 1px rgba(245, 158, 11, 0.15);
+
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+.value-card:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.16),
+    0 0 0 1px rgba(245, 158, 11, 0.25);
+}
+
+/* Анимация при зареждане (една по една) */
+.value-anim{
+  opacity: 0;
+  animation: fadeUp 0.9s ease-out forwards;
+}
+
+/* Stagger */
+.col-12:nth-child(1) .value-anim { animation-delay: 0.10s; }
+.col-12:nth-child(2) .value-anim { animation-delay: 0.20s; }
+.col-12:nth-child(3) .value-anim { animation-delay: 0.30s; }
+.col-12:nth-child(4) .value-anim { animation-delay: 0.40s; }
+
+.stats-box {
+  border: 2px solid #f59e0b;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.10),
+    0 0 0 1px rgba(245, 158, 11, 0.15);
+
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+
+.stats-box {
+  border: 2px solid #f59e0b;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.10),
+    0 0 0 1px rgba(245, 158, 11, 0.15);
+
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+.stats-box:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.16),
+    0 0 0 1px rgba(245, 158, 11, 0.25);
+}
+
+/* Числата */
+.stat-number {
+  font-weight: 800;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  color: #8a4b17; /* кафяво-оранжево */
+  letter-spacing: 0.5px;
+}
+
+/* Текстът под числата */
+.stat-label {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Анимация при зареждане */
+.stats-anim {
+  opacity: 0;
+  animation: fadeUp 0.9s ease-out forwards;
+  animation-delay: 0.15s;
+}
+
+
+@keyframes iconFloat {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.06);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.contact-icon-animation {
+  animation: iconFloat 2.4s ease-in-out infinite;
+}
+
+/* различни скорости – по желание */
+.icon-orange.contact-icon-animation { animation-duration: 2.2s; }
+.icon-blue.contact-icon-animation  { animation-duration: 2.6s; }
+.icon-green.contact-icon-animation  { animation-duration: 3s; }
+.icon-purple.contact-icon-animation  { animation-duration: 2.6s; }

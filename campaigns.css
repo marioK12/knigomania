@@ -1,0 +1,570 @@
+/* =========================
+   campaigns.css (FINAL v5 — Kicker-aligned CTA, no break)
+   Requires: <body class="km-layout km-campaigns">
+   Works with campaigns.php markup:
+   - .camp-hero, .camp-glow, .camp-kicker, .camp-title, .camp-sub
+   - .camp-hero-actions (top CTA)
+   - .camp-filters-wrap, .camp-filters (filter bar)
+   - .camp-grid, .camp-item, .badge-soft, .camp-h, .camp-meta, .camp-desc, .camp-actions
+   - .camp-empty (empty)
+   - .camp-cover (thumbnail)
+   ========================= */
+
+/* =========================================================
+   1) TOKENS
+========================================================= */
+:root{
+  --ink:#0f172a;
+  --muted:rgba(15,23,42,.66);
+
+  --card:rgba(255,255,255,.92);
+  --stroke:rgba(15,23,42,.10);
+
+  --shadow:0 18px 55px rgba(2,6,23,.10);
+  --shadow2:0 26px 90px rgba(2,6,23,.14);
+  --shadow3:0 10px 26px rgba(2,6,23,.10);
+
+  --r:22px;
+
+  /* brand */
+  --p1:#0f766e;  /* teal-dark */
+  --p2:#16a34a;  /* green */
+  --p3:#0ea5e9;  /* sky */
+
+  --focus: rgba(14,165,233,.18);
+
+  --control-h: 48px;
+}
+
+/* =========================================================
+   2) PAGE BACKDROP (scoped)
+========================================================= */
+body.km-layout.km-campaigns{
+  color: var(--ink);
+  background:
+    radial-gradient(1100px 540px at 16% -12%, rgba(14,165,233,.12), transparent 60%),
+    radial-gradient(980px 520px at 86% -10%, rgba(34,197,94,.14), transparent 60%),
+    linear-gradient(180deg, #f8fafc, #f3f6fb 40%, #f8fafc);
+}
+
+body.km-layout.km-campaigns .km-main{
+  padding-bottom: 52px;
+}
+
+/* =========================================================
+   3) HERO
+========================================================= */
+.camp-hero{
+  position:relative;
+  overflow:hidden;
+  padding: 56px 0 34px;
+  color:#fff;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  background:
+    radial-gradient(900px 420px at 16% 12%, rgba(255,255,255,.14), transparent 60%),
+    radial-gradient(900px 420px at 86% 10%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(120deg, var(--p1), var(--p2) 55%, var(--p3));
+  isolation:isolate;
+}
+
+.camp-hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(840px 340px at 50% 0%, rgba(124,58,237,.16), transparent 60%),
+    linear-gradient(to bottom, rgba(2,6,23,.04), rgba(2,6,23,.22));
+  pointer-events:none;
+}
+
+.camp-glow{
+  position:absolute; inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.camp-glow::before,
+.camp-glow::after{
+  content:"";
+  position:absolute;
+  width:540px; height:540px;
+  border-radius:50%;
+  filter: blur(18px);
+  opacity:.56;
+}
+.camp-glow::before{
+  left:-210px; top:-240px;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255,255,255,.20),
+    rgba(14,165,233,.16),
+    transparent 62%);
+}
+.camp-glow::after{
+  right:-250px; top:-300px;
+  background: radial-gradient(circle at 40% 40%,
+    rgba(34,197,94,.18),
+    rgba(245,158,11,.12),
+    transparent 64%);
+}
+
+.camp-hero .container{
+  position:relative;
+  z-index:2;
+}
+
+/* =========================================================
+   4) HERO TEXT
+========================================================= */
+.camp-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.24);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+  font-weight: 900;
+  letter-spacing:.2px;
+  margin-bottom: 14px; /* will be overridden in grid header row */
+}
+
+.camp-title{
+  font-weight: 950;
+  letter-spacing:-.5px;
+  margin: 0 0 14px;
+  text-shadow: 0 18px 55px rgba(0,0,0,.26);
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  line-height: 1.05;
+}
+
+.camp-sub{
+  max-width: 72ch;
+  opacity:.95;
+  text-shadow: 0 12px 30px rgba(0,0,0,.16);
+  margin: 0 0 22px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   5) HERO CTA — FIXED ALIGNMENT WITH KICKER (ALL SCREENS)
+   ✅ CTA and Kicker are on SAME ROW / SAME HEIGHT (grid)
+   ✅ No absolute positioning → no overlap, no "breaking"
+========================================================= */
+body.km-layout.km-campaigns .camp-hero .container{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "kicker actions"
+    "title  title"
+    "sub    sub";
+  column-gap: 14px;
+  row-gap: 14px;
+  align-items:start;
+}
+
+/* place kicker + remove its old margin-bottom */
+body.km-layout.km-campaigns .camp-kicker{
+  grid-area: kicker;
+  margin-bottom: 0 !important;
+  align-self: start;
+  max-width: 100%;
+}
+
+/* place actions on same row, aligned to kicker height */
+body.km-layout.km-campaigns .camp-hero-actions{
+  grid-area: actions;
+  justify-self: end;
+  align-self: start;
+
+  /* kill any previous absolute rules */
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+
+  z-index: 5 !important;
+  margin: 0 !important;
+  display:flex;
+  gap:10px;
+  flex-wrap: nowrap;
+}
+
+body.km-layout.km-campaigns .camp-hero-actions .btn,
+body.km-layout.km-campaigns .camp-hero-actions a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  border-radius: 14px !important;
+  padding: 10px 14px !important;
+  min-height: 40px;
+
+  font-weight: 950 !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  background: rgba(255,255,255,.16) !important;
+  color:#fff !important;
+  text-decoration:none;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 34px rgba(0,0,0,.16);
+
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+  white-space: nowrap;
+
+  /* prevent button from forcing layout break */
+  max-width: 100%;
+}
+
+body.km-layout.km-campaigns .camp-hero-actions .btn:hover,
+body.km-layout.km-campaigns .camp-hero-actions a:hover{
+  background: rgba(255,255,255,.22) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 18px 46px rgba(0,0,0,.18);
+}
+
+/* map title/sub into grid */
+body.km-layout.km-campaigns .camp-title{ grid-area: title; }
+body.km-layout.km-campaigns .camp-sub{ grid-area: sub; }
+
+/* small screens: keep same structure but shrink CTA and allow kicker to wrap nicely */
+@media (max-width: 520px){
+  body.km-layout.km-campaigns .camp-hero .container{
+    column-gap: 10px;
+  }
+
+  body.km-layout.km-campaigns .camp-hero-actions .btn,
+  body.km-layout.km-campaigns .camp-hero-actions a{
+    padding: 8px 10px !important;
+    font-size: .92rem !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* ultra small phones: allow two-row header (still “same place” = header top),
+   kicker stays first, button stays top-right but can go under if needed */
+@media (max-width: 380px){
+  body.km-layout.km-campaigns .camp-hero .container{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "kicker"
+      "actions"
+      "title"
+      "sub";
+  }
+
+  body.km-layout.km-campaigns .camp-hero-actions{
+    justify-self: start;
+  }
+
+  body.km-layout.km-campaigns .camp-hero-actions .btn,
+  body.km-layout.km-campaigns .camp-hero-actions a{
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =========================================================
+   6) FILTER BAR
+========================================================= */
+.camp-filters-wrap{
+  position:relative;
+  z-index:3;
+  margin-top: -22px;
+  padding-bottom: 18px;
+}
+
+.camp-filters{
+  border-radius: 20px;
+  background: rgba(255,255,255,.86);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.camp-filters form{
+  display:grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr auto;
+  gap:14px;
+  row-gap:14px;
+  align-items:center;
+}
+
+.camp-filters .form-control,
+.camp-filters .form-select,
+.camp-filters input,
+.camp-filters select{
+  height: var(--control-h);
+  border-radius: 14px !important;
+  border: 1px solid rgba(15,23,42,.12) !important;
+  background: rgba(255,255,255,.92) !important;
+  box-shadow: none !important;
+  padding: 0 16px !important;
+
+  font-weight: 750;
+  color: var(--ink);
+  outline:none;
+
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+
+.camp-filters input::placeholder{
+  color: rgba(15,23,42,.45);
+}
+
+.camp-filters .form-control:focus,
+.camp-filters .form-select:focus,
+.camp-filters input:focus,
+.camp-filters select:focus{
+  border-color: rgba(14,165,233,.55) !important;
+  box-shadow: 0 0 0 4px var(--focus) !important;
+}
+
+.camp-filters .btn,
+.camp-filters button{
+  height: var(--control-h);
+  border-radius: 14px !important;
+  padding: 0 18px !important;
+  font-weight: 950 !important;
+  border: none !important;
+  background: linear-gradient(135deg, rgba(14,165,233,.95), rgba(34,197,94,.92)) !important;
+  color:#fff !important;
+  box-shadow: 0 14px 30px rgba(2,6,23,.10);
+  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+  white-space: nowrap;
+}
+.camp-filters .btn:hover,
+.camp-filters button:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 18px 40px rgba(2,6,23,.14);
+}
+
+/* =========================================================
+   7) GRID + CARDS
+========================================================= */
+.camp-grid{
+  padding: 14px 0 52px;
+}
+
+.camp-item{
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r);
+  box-shadow: 0 14px 40px rgba(2,6,23,.08);
+  padding: 16px;
+
+  height:100%;
+  display:flex;
+  flex-direction: column;
+
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.camp-item:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadow2);
+}
+
+/* cover image (sharp) */
+.camp-cover{
+  display:block;
+  border-radius: 18px;
+  overflow:hidden;
+  border: 1px solid rgba(15,23,42,.10);
+  background: #fff;
+  margin-bottom: 12px;
+  box-shadow: 0 16px 36px rgba(2,6,23,.10);
+  text-decoration:none;
+}
+
+.camp-cover img{
+  width:100%;
+  height: 200px;
+  object-fit: cover;
+  display:block;
+
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.08) brightness(1.02) saturate(1.05);
+
+  transition: transform .18s ease, filter .18s ease;
+}
+
+.camp-item:hover .camp-cover img{
+  transform: scale(1.02);
+  filter: contrast(1.12) brightness(1.04) saturate(1.08);
+}
+
+.camp-cover-ph{
+  height: 200px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: rgba(15,23,42,.62);
+  font-weight: 900;
+  background: linear-gradient(135deg,#f8fafc,#eef2f7);
+}
+
+/* chips */
+.badge-soft{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-weight: 900;
+  color: rgba(15,23,42,.82);
+  font-size: .86rem;
+}
+
+.camp-h{
+  font-weight: 950;
+  margin: 10px 0 4px;
+  letter-spacing: -.25px;
+  line-height: 1.15;
+}
+
+.camp-meta{
+  color: var(--muted);
+  font-weight: 800;
+  font-size:.95rem;
+  line-height: 1.35;
+}
+
+.camp-desc{
+  margin-top: 10px;
+  color: rgba(15,23,42,.74);
+  font-weight: 650;
+  line-height: 1.55;
+
+  display:-webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow:hidden;
+}
+
+/* actions */
+.camp-actions{
+  display:flex;
+  gap:10px;
+  margin-top: auto;
+  padding-top: 14px;
+  flex-wrap: wrap;
+}
+
+.camp-actions a{
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-weight: 950;
+  border: 1px solid rgba(15,23,42,.10);
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.camp-actions a.primary{
+  color:#fff;
+  border: none;
+  background: linear-gradient(135deg, rgba(15,118,110,.94), rgba(34,197,94,.86));
+  box-shadow: 0 14px 26px rgba(2,6,23,.12);
+}
+.camp-actions a.primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 18px 36px rgba(2,6,23,.16);
+}
+
+/* =========================================================
+   8) EMPTY STATE
+========================================================= */
+.camp-empty{
+  background: var(--card);
+  border: 1px dashed rgba(15,23,42,.18);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 14px;
+}
+
+.camp-empty-title{
+  margin:0 0 4px;
+  font-weight: 950;
+  letter-spacing: -.25px;
+}
+
+.camp-empty-sub{
+  margin:0;
+  color: rgba(15,23,42,.68);
+  font-weight: 650;
+}
+
+.camp-empty .btn-new{
+  border-radius: 14px;
+  padding: 11px 14px;
+  font-weight: 950;
+  background: linear-gradient(135deg, rgba(14,165,233,.95), rgba(34,197,94,.92));
+  color:#fff;
+  text-decoration:none;
+  border:none;
+  box-shadow: 0 14px 30px rgba(2,6,23,.10);
+  white-space: nowrap;
+  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+.camp-empty .btn-new:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 18px 40px rgba(2,6,23,.14);
+}
+
+/* =========================================================
+   9) RESPONSIVE (filters + layout only)
+========================================================= */
+@media (max-width: 992px){
+  .camp-filters form{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px){
+  .camp-filters{
+    padding: 14px;
+  }
+  .camp-filters form{
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .camp-empty{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .camp-empty .btn-new{
+    width:100%;
+    text-align:center;
+  }
+}
+
+/* =========================================================
+   10) REDUCED MOTION
+========================================================= */
+@media (prefers-reduced-motion: reduce){
+  .camp-item,
+  .camp-actions a,
+  .camp-hero-actions a,
+  .camp-hero-actions .btn,
+  .camp-filters button,
+  .camp-empty .btn-new,
+  .camp-cover img{
+    transition: none !important;
+  }
+}

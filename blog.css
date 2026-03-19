@@ -1,0 +1,586 @@
+/* =========================================================
+   blog.css — Warm Orange Blog theme (Bootstrap-friendly)
+   FINAL CLEAN (grid list + single post gallery like product page)
+   ========================================================= */
+
+:root{
+  --ink:#0f172a;
+  --muted:rgba(15,23,42,.70);
+
+  --bg:#fff7ed;
+  --bg2:#fffbf5;
+
+  --card:#ffffff;
+
+  --orange1:#c2410c;
+  --orange2:#fb923c;
+
+  --amber:#f59e0b;
+
+  --shadow: 0 12px 30px rgba(0,0,0,.10);
+  --shadow2: 0 18px 40px rgba(0,0,0,.16);
+
+  --r:18px;
+}
+
+*{ box-sizing:border-box; }
+
+body.km-layout{
+  background:
+    radial-gradient(900px 420px at 12% 6%, rgba(251,146,60,.20), transparent 55%),
+    radial-gradient(900px 420px at 88% 10%, rgba(245,158,11,.18), transparent 55%),
+    linear-gradient(180deg, var(--bg), var(--bg2));
+  color: var(--ink);
+}
+
+/* =========================
+   HERO
+========================= */
+.blog-hero2{
+  background: linear-gradient(135deg, var(--orange1), var(--orange2));
+  color:#fff;
+  padding: 56px 0 42px;
+  position: relative;
+  overflow:hidden;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  text-align:center;
+}
+
+.blog-hero2::before{
+  content:"";
+  position:absolute;
+  inset:-120px -120px auto auto;
+  width:420px; height:420px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), transparent 60%);
+  transform: rotate(12deg);
+  pointer-events:none;
+}
+
+.blog-hero2::after{
+  content:"";
+  position:absolute;
+  left:-140px; bottom:-160px;
+  width:520px; height:520px;
+  background: radial-gradient(circle at 55% 45%, rgba(0,0,0,.18), transparent 62%);
+  pointer-events:none;
+}
+
+.blog-hero2 .hero-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  position: relative;
+  z-index: 2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.blog-hero2 h1{
+  font-weight: 900;
+  letter-spacing: .2px;
+  margin: 0 0 10px;
+  font-size: clamp(32px, 4vw, 44px);
+  text-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+.blog-hero2 p{
+  margin: 0 0 18px;
+  max-width: 720px;
+  color: rgba(255,255,255,.88);
+  font-size: 1.05rem;
+}
+
+/* =========================
+   HERO BUTTON
+========================= */
+.btn-hero{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 11px 16px;
+  border-radius: 14px;
+  font-weight: 800;
+  text-decoration:none;
+  border: 2px solid rgba(255,255,255,.40);
+  background: rgba(255,255,255,.14);
+  color:#fff;
+  box-shadow: 0 12px 26px rgba(0,0,0,.18);
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+  margin-bottom: 16px;
+}
+.btn-hero:hover{
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.20);
+  border-color: rgba(255,255,255,.55);
+  box-shadow: 0 18px 36px rgba(0,0,0,.24);
+}
+.btn-hero:focus{
+  outline:none;
+  box-shadow: 0 0 0 4px rgba(255,255,255,.22), 0 18px 36px rgba(0,0,0,.24);
+}
+
+/* =========================
+   HERO SEARCH
+========================= */
+.hero-tools{
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+.hero-search{
+  display:flex;
+  gap:10px;
+  max-width:520px;
+  width:100%;
+}
+
+.hero-search .form-control{
+  border-radius: 14px;
+  border: 2px solid rgba(255,255,255,.30);
+  background: rgba(255,255,255,.16);
+  color:#fff;
+  padding: 11px 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+}
+.hero-search .form-control::placeholder{ color: rgba(255,255,255,.72); }
+.hero-search .form-control:focus{
+  border-color: rgba(255,255,255,.55);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.18);
+  background: rgba(255,255,255,.18);
+  color:#fff;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn-soft{
+  background: rgba(255,255,255,.88);
+  border: 2px solid rgba(245,158,11,.40);
+  color: var(--ink);
+  border-radius: 14px;
+  font-weight: 800;
+  padding: 10px 14px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.10);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+.btn-soft:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(0,0,0,.14);
+  border-color: rgba(245,158,11,.58);
+}
+
+.btn-soft.btn-sm{
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.btn-eco{
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  border:none;
+  color:#fff;
+  border-radius:14px;
+  font-weight:900;
+  padding:10px 14px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.14);
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+.btn-eco:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0,0,0,.18);
+  filter: saturate(1.05);
+}
+
+/* ✅ НОВО: "Изтрий" със същия стил като .btn-eco (само че червен) */
+.btn-del{
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  border:none;
+  color:#fff;
+  border-radius:14px;
+  font-weight:900;
+  padding:10px 14px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.14);
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+.btn-del:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0,0,0,.18);
+  filter: saturate(1.05);
+}
+
+/* =========================
+   SECTION + GRID SPACING
+========================= */
+.container.py-4{
+  padding-top: 26px !important;
+  padding-bottom: 72px;
+}
+
+.section-title{
+  max-width: 1100px;
+  margin: 18px auto 22px;
+  font-weight: 950;
+  letter-spacing: .2px;
+}
+
+.row.g-3{
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 56px;
+}
+
+/* =========================
+   BLOG CARDS (LIST)
+========================= */
+.blog-card{
+  background: rgba(255,255,255,.92);
+  border: 2px solid rgba(245,158,11,.34);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.blog-card:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow2);
+  border-color: rgba(245,158,11,.52);
+}
+
+.blog-meta{
+  font-weight: 850;
+  color: rgba(15,23,42,.72);
+  font-size: .92rem;
+}
+
+.blog-card h5{
+  font-weight: 950 !important;
+  letter-spacing: .15px;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.blog-card .text-muted{
+  color: rgba(15,23,42,.70) !important;
+  font-size: .98rem;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.blog-card .btn.btn-soft{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border-radius: 999px;
+  padding: 8px 12px;
+}
+
+.blog-card, .blog-card *{ min-width: 0; }
+
+/* =========================
+   SINGLE POST META
+========================= */
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  font-size:.88rem;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(245,158,11,.14);
+  border:1px solid rgba(245,158,11,.28);
+}
+
+.post-meta-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+
+.author-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(245,158,11,.14);
+  border: 1px solid rgba(245,158,11,.28);
+  font-weight: 900;
+}
+
+/* =========================
+   POST BODY
+========================= */
+.post-body{
+  color: rgba(15,23,42,.82);
+  line-height:1.85;
+  font-size:1.05rem;
+  white-space:pre-wrap;
+
+  overflow-wrap:anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  text-align:left;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.empty-state{
+  background: rgba(255,255,255,.92);
+  border:2px solid rgba(245,158,11,.32);
+  border-radius:20px;
+  box-shadow:0 14px 34px rgba(0,0,0,.10);
+  padding:28px 22px;
+  text-align:center;
+  max-width:720px;
+  margin: 12px auto 0;
+}
+
+.empty-icon{
+  width:74px;
+  height:74px;
+  margin:0 auto 14px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(420px 220px at 35% 30%, rgba(251,146,60,.30), transparent 60%),
+    radial-gradient(420px 220px at 70% 70%, rgba(245,158,11,.22), transparent 60%),
+    #fff;
+  border:2px solid rgba(245,158,11,.38);
+  box-shadow: 0 12px 26px rgba(0,0,0,.10);
+}
+
+.empty-title{
+  font-weight:950;
+  margin: 0 0 6px;
+}
+
+.empty-text{
+  color:rgba(15,23,42,.70);
+  max-width:560px;
+  margin:0 auto 16px;
+  line-height: 1.6;
+}
+
+.empty-actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   AVATARS
+========================= */
+.author-line{ display:inline-flex; align-items:center; gap:8px; }
+.meta-sep{ margin: 0 6px; opacity:.7; }
+
+.avatar-xs-wrap,
+.avatar-sm-wrap{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  overflow:hidden;
+  border: 2px solid rgba(245,158,11,.35);
+  background: rgba(245,158,11,.14);
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+}
+
+.avatar-xs-wrap{ width: 28px; height: 28px; }
+.avatar-sm-wrap{ width: 40px; height: 40px; }
+
+.avatar-xs,
+.avatar-sm{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+.avatar-xs-wrap.no-img::before,
+.avatar-sm-wrap.no-img::before{
+  content: attr(data-ini);
+  font-weight: 950;
+  color: rgba(15,23,42,.85);
+  font-size: 0.78rem;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+/* =========================
+   ENTRANCE ANIMATIONS
+========================= */
+.km-boot{
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .38s ease, transform .38s ease;
+}
+.km-boot.is-ready{ opacity: 1; transform: translateY(0); }
+
+.km-card-in{
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .42s ease, transform .42s ease;
+}
+.km-card-in.is-in{ opacity: 1; transform: translateY(0); }
+
+a.text-reset:focus-visible,
+a.btn-hero:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(245,158,11,.28);
+  border-radius: 16px;
+}
+
+/* =========================================================
+   SINGLE POST — FIXED LAYOUT
+========================================================= */
+
+.post-layout.bookish{
+  display:grid;
+  gap: 26px;
+  align-items:start;
+  margin-top: 16px;
+  min-width:0;
+}
+
+.post-layout.bookish.has-media{
+  grid-template-columns: 420px 1fr;
+}
+
+.post-layout.bookish.no-media{
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 8px;
+  justify-items: start;
+}
+
+.post-layout.bookish.no-media .post-content{
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  justify-self: start;
+}
+
+.post-media{ min-width:0; }
+.post-content{ min-width:0; }
+
+/* main image frame */
+.post-main{
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid rgba(245,158,11,.32);
+  background: #fff;
+  box-shadow: 0 10px 22px rgba(0,0,0,.10);
+  padding: 10px;
+}
+
+.post-main img{
+  width: 100%;
+  height: 420px;
+  object-fit: contain;
+  display:block;
+  background:#fff;
+}
+
+/* thumbs */
+.post-thumbs{
+  margin-top: 10px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.post-thumb{
+  border: 2px solid rgba(245,158,11,.25);
+  background:#fff;
+  border-radius: 14px;
+  padding: 6px;
+  cursor:pointer;
+  box-shadow: 0 8px 16px rgba(0,0,0,.08);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.post-thumb:hover{
+  transform: translateY(-2px);
+  border-color: rgba(245,158,11,.55);
+  box-shadow: 0 14px 26px rgba(0,0,0,.12);
+}
+
+.post-thumb.is-active{
+  border-color: rgba(245,158,11,.88);
+  box-shadow: 0 0 0 3px rgba(245,158,11,.18), 0 14px 26px rgba(0,0,0,.12);
+}
+
+.post-thumb img{
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 10px;
+  display:block;
+}
+
+/* responsive */
+@media (max-width: 991px){
+  .post-layout.bookish.has-media{
+    grid-template-columns: 1fr;
+  }
+  .post-main img{
+    height: 340px;
+  }
+}
+
+/* =========================================================
+   WRAP TEXT AROUND MEDIA (като книга)
+========================================================= */
+
+.post-layout.bookish.has-media{
+  display:block;
+}
+
+.post-layout.bookish.has-media .post-media{
+  float:left;
+  width: 420px;
+  margin: 0 26px 12px 0;
+}
+
+.post-layout.bookish.has-media .post-content{
+  display:block;
+}
+
+/* clearfix */
+.post-layout.bookish.has-media::after{
+  content:"";
+  display:block;
+  clear:both;
+}
+
+/* responsive wrap */
+@media (max-width: 991px){
+  .post-layout.bookish.has-media .post-media{
+    float:none;
+    width: 100%;
+    margin: 0 0 14px 0;
+  }
+}

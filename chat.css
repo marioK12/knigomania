@@ -1,0 +1,289 @@
+/* =========================================================
+   messages.css — clean chat UI (Bootstrap-friendly)
+   Works with: .chat-card .chat-header .chat-body .chat-msg .me/.other
+   ========================================================= */
+
+:root{
+  --ink:#0f172a;
+  --muted:rgba(15,23,42,.62);
+
+  --bg1:#ecfff6;
+  --bg2:#f6fffb;
+
+  --card:rgba(255,255,255,.90);
+  --stroke:rgba(15,23,42,.10);
+
+  --green:#16a34a;
+  --green2:#0f766e;
+
+  --shadow: 0 18px 50px rgba(2,6,23,.10);
+  --shadow2: 0 10px 24px rgba(2,6,23,.08);
+
+  --r:18px;
+}
+
+/* Optional page background (ако .km-layout е на body) */
+.km-layout{
+  background:
+    radial-gradient(1200px 700px at 10% -10%, rgba(22,163,74,.20), transparent 55%),
+    radial-gradient(900px 600px at 95% 0%, rgba(15,118,110,.18), transparent 52%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+  color: var(--ink);
+}
+
+/* Main spacing (ако имаш глобални styles, това е леко) */
+.km-main{
+  min-height: calc(100vh - 120px);
+}
+
+/* Card */
+.chat-card{
+  border: 1px solid var(--stroke);
+  border-radius: calc(var(--r) + 4px);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Header */
+.chat-header{
+  padding: 14px 16px;
+  background:
+    linear-gradient(90deg, rgba(22,163,74,.10), rgba(15,118,110,.10));
+  border-bottom: 1px solid var(--stroke);
+}
+
+.chat-header .title{
+  font-weight: 800;
+  letter-spacing: .2px;
+  font-size: 1.05rem;
+}
+
+.chat-header .subtitle{
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+/* Body (messages area) */
+.chat-body{
+  padding: 14px;
+  height: min(62vh, 520px);
+  overflow-y: auto;
+  background:
+    radial-gradient(900px 450px at 0% 0%, rgba(22,163,74,.06), transparent 60%),
+    radial-gradient(800px 420px at 100% 0%, rgba(15,118,110,.05), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.25));
+}
+
+/* Scrollbar (Chrome/Edge) */
+.chat-body::-webkit-scrollbar{ width: 10px; }
+.chat-body::-webkit-scrollbar-track{ background: rgba(15,23,42,.05); border-radius: 999px; }
+.chat-body::-webkit-scrollbar-thumb{
+  background: rgba(15,23,42,.18);
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,.6);
+}
+.chat-body::-webkit-scrollbar-thumb:hover{ background: rgba(15,23,42,.28); }
+
+/* Bubble base */
+.chat-msg{
+  max-width: min(78%, 560px);
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow2);
+  line-height: 1.35;
+  position: relative;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  margin: 6px 0;
+
+}
+
+/* Mine */
+.chat-msg.me{
+  background: linear-gradient(135deg, rgba(22,163,74,.18), rgba(15,118,110,.10));
+  border-color: rgba(22,163,74,.22);
+}
+
+/* Other */
+.chat-msg.other{
+  background: rgba(255,255,255,.92);
+  border-color: rgba(15,23,42,.10);
+}
+
+/* Time */
+.chat-time{
+  margin-top: 6px;
+  font-size: .78rem;
+  color: rgba(15,23,42,.55);
+  text-align: right;
+}
+
+/* Footer */
+.chat-footer{
+  padding: 12px 12px 14px;
+  border-top: 1px solid var(--stroke);
+  background: rgba(255,255,255,.75);
+}
+
+/* Input */
+.chat-input.form-control{
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,.14);
+  background: rgba(255,255,255,.92);
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+  resize: none;
+  padding: 10px 12px;
+  min-height: 44px;
+}
+
+.chat-input.form-control:focus{
+  border-color: rgba(22,163,74,.50);
+  box-shadow: 0 0 0 .25rem rgba(22,163,74,.18);
+}
+
+/* Send button */
+.chat-send.btn{
+  border-radius: 14px;
+  padding: 0 16px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  box-shadow: 0 10px 20px rgba(2,6,23,.10);
+}
+
+.chat-send.btn:active{
+  transform: translateY(1px);
+}
+
+/* Make the textarea + button look like one component */
+.chat-footer .input-group .chat-input{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.chat-footer .input-group .chat-send{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Status line */
+#chatStatus{
+  min-height: 18px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px){
+  .chat-body{
+    height: 60vh;
+    padding: 12px;
+  }
+  .chat-msg{
+    max-width: 86%;
+    padding: 9px 11px;
+  }
+  .chat-send.btn{
+    padding: 0 12px;
+  }
+}
+
+/* Optional: nicer top buttons (Назад / Към обявата) without breaking Bootstrap */
+.btn.btn-outline-secondary,
+.btn.btn-outline-success{
+  border-radius: 999px;
+}
+
+/* Optional: a subtle hover lift for bubbles */
+.chat-msg:hover{
+  filter: saturate(1.03);
+  transform: translateY(-1px);
+  transition: transform .12s ease, filter .12s ease;
+}
+
+/* =========================================================
+   ANIMATIONS (replay via JS: body.km-anim)
+   Put this at the VERY END of chat.css
+========================================================= */
+
+@keyframes chatFadeUp{
+  from{ opacity:0; transform: translateY(10px); filter: blur(2px); }
+  to  { opacity:1; transform: translateY(0);  filter: blur(0); }
+}
+
+@keyframes chatPopIn{
+  from{ opacity:0; transform: translateY(10px) scale(.985); }
+  to  { opacity:1; transform: translateY(0) scale(1); }
+}
+
+/* sheen for header */
+@keyframes chatHeaderSheen{
+  from{ transform: translateX(-120%) rotate(16deg); opacity:0; }
+  20% { opacity:.55; }
+  to  { transform: translateX(140%) rotate(16deg); opacity:0; }
+}
+
+/* default: no animations (so replay works) */
+.chat-card,
+.chat-header,
+.chat-body,
+.chat-msg{
+  animation: none;
+}
+
+/* card appears */
+body.km-anim .chat-card{
+  animation: chatFadeUp .55s cubic-bezier(.18,.9,.2,1) both;
+}
+
+/* header drops in */
+body.km-anim .chat-header{
+  position: relative;
+  overflow: hidden;
+  animation: chatFadeUp .55s cubic-bezier(.18,.9,.2,1) both;
+  animation-delay: .05s;
+}
+
+/* header sheen */
+body.km-anim .chat-header::after{
+  content:"";
+  position:absolute;
+  inset:-80% auto auto -40%;
+  width: 240px;
+  height: 240px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.32) 45%, rgba(255,255,255,.14) 55%, transparent 100%);
+  transform: rotate(16deg);
+  pointer-events:none;
+
+  animation: chatHeaderSheen .95s cubic-bezier(.18,.9,.2,1) both;
+  animation-delay: .18s;
+}
+
+/* body fades in */
+body.km-anim .chat-body{
+  animation: chatFadeUp .55s cubic-bezier(.18,.9,.2,1) both;
+  animation-delay: .08s;
+}
+
+/* bubbles pop in (first 12 for stagger) */
+body.km-anim .chat-msg{
+  animation: chatPopIn .45s cubic-bezier(.18,.9,.2,1) both;
+  will-change: transform, opacity;
+}
+
+/* stagger */
+body.km-anim .chat-msg:nth-of-type(1){  animation-delay: .10s; }
+body.km-anim .chat-msg:nth-of-type(2){  animation-delay: .13s; }
+body.km-anim .chat-msg:nth-of-type(3){  animation-delay: .16s; }
+body.km-anim .chat-msg:nth-of-type(4){  animation-delay: .19s; }
+body.km-anim .chat-msg:nth-of-type(5){  animation-delay: .22s; }
+body.km-anim .chat-msg:nth-of-type(6){  animation-delay: .25s; }
+body.km-anim .chat-msg:nth-of-type(7){  animation-delay: .28s; }
+body.km-anim .chat-msg:nth-of-type(8){  animation-delay: .31s; }
+body.km-anim .chat-msg:nth-of-type(9){  animation-delay: .34s; }
+body.km-anim .chat-msg:nth-of-type(10){ animation-delay: .37s; }
+body.km-anim .chat-msg:nth-of-type(11){ animation-delay: .40s; }
+body.km-anim .chat-msg:nth-of-type(12){ animation-delay: .43s; }
+

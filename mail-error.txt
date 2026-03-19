@@ -1,0 +1,5 @@
+FILE TEST OK
+FILE TEST OK
+[2025-12-23 11:52:58] SMTP Error: Could not authenticate.
+[2025-12-23 11:53:15] SMTP Error: Could not authenticate.
+[2025-12-23 11:57:25] SMTP Error: Could not authenticate.

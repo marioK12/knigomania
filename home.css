@@ -1,0 +1,586 @@
+:root{
+  --ink:#0f172a;
+  --muted:rgba(15,23,42,.65);
+
+  --amber:#f59e0b;
+  --amber-dark:#c2410c;
+
+  --card:#ffffff;
+  --stroke:rgba(15,23,42,.12);
+
+  --shadow:0 18px 45px rgba(2,6,23,.12);
+  --shadow-soft:0 10px 26px rgba(2,6,23,.10);
+
+  --radius:18px;
+}
+
+/* =========================
+   HERO
+========================= */
+.km-hero{
+  position:relative;
+  min-height: 680px;      /* ✅ по-дълго hero */
+  padding: 110px 0 160px; /* ✅ повече въздух горе/долу */
+  color:#fff;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  overflow:hidden;
+}
+
+.km-hero-inner{
+  max-width:800px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.km-hero-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-weight:800;
+  color:rgba(255,255,255,.95);
+  margin-bottom:12px;
+}
+
+.km-hero-title{
+  font-weight:900;
+  line-height:1.05;
+  font-size:clamp(2.4rem, 4vw, 3.8rem);
+  margin:0 0 16px;
+  text-shadow:0 16px 34px rgba(0,0,0,.25);
+}
+
+.km-hero-sub{
+  max-width:70ch;
+  margin:0 auto 28px;
+  color:rgba(255,255,255,.92);
+  font-size:1.05rem;
+}
+
+.km-hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:nowrap;
+}
+
+@media (max-width: 992px){
+  .km-hero-actions{
+    flex-wrap:wrap;   /* mobile → на два реда */
+  }
+}
+
+.km-btn-white{
+  will-change:transform;
+  background:rgba(255,255,255,.97);
+  border:1px solid rgba(255,255,255,.55);
+  color:#7c2d12;
+  font-weight:900;
+  padding:13px 22px;
+  border-radius:14px;
+  box-shadow:0 14px 30px rgba(0,0,0,.22);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.km-btn-white:hover{
+  transform:translateY(-3px);
+  box-shadow:0 20px 42px rgba(0,0,0,.28);
+  color:#7c2d12;
+}
+
+.km-hero-fade{
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  height:140px;
+  background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+
+
+/* повече разстояние след hero секцията */
+.km-hero{
+  margin-bottom: 100px;   /* пробвай 40px / 60px / 80px */
+}
+
+/* =========================
+   FEATURES (4 cards)
+========================= */
+.km-features{
+  padding:26px 0 40px;
+  background:#fff;
+}
+
+.km-feature{
+  background:#fff;
+  border:2px solid rgba(245,158,11,.55);
+  border-radius:18px;
+  box-shadow:var(--shadow-soft);
+  padding:18px 14px;
+  text-align:center;
+  height:100%;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.km-feature:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow);
+}
+
+.km-feature-icon{
+  width:54px;
+  height:54px;
+  margin:0 auto 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  font-size:1.25rem;
+  color:#fff;
+  font-weight:900;
+}
+
+.km-feature-icon.orange{ background:#f59e0b; }
+.km-feature-icon.blue{ background:#3b82f6; }
+.km-feature-icon.green{ background:#22c55e; }
+.km-feature-icon.pink{ background:#d946ef; }
+
+.km-feature-title{
+  font-weight:900;
+  color:var(--ink);
+  margin-bottom:4px;
+}
+
+.km-feature-sub{
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.home-section{
+  padding:48px 0;
+  background:#fff;
+}
+
+/* Препоръчани книги – лек топъл фон (да не е “скучно бяло”) */
+.home-section-books{
+  background: linear-gradient(
+    180deg,
+    rgba(245,158,11,.07),
+    rgba(255,255,255,1)
+  );
+}
+
+/* Учебници – лек лилаво/син фон (като textbooks темата) */
+.home-section-textbooks{
+  background: linear-gradient(
+    120deg,
+    rgba(124,58,237,.10),
+    rgba(59,130,246,.08)
+  );
+}
+
+.sec-title{
+  font-weight:900;
+  color:var(--ink);
+  margin:0;
+}
+
+.sec-sub{
+  margin-top:6px;
+  color:var(--muted);
+}
+
+/* amber outline button */
+.btn-outline-amber{
+  border:2px solid var(--amber);
+  color:#9a3412;
+  font-weight:800;
+  border-radius:14px;
+}
+.btn-outline-amber:hover{
+  background:rgba(245,158,11,.12);
+  color:#7c2d12;
+}
+
+/* =========================
+   GENERIC CARDS (km-card)
+========================= */
+.km-card{
+  border:1px solid var(--stroke);
+  border-radius:var(--radius);
+  background:var(--card);
+  box-shadow:var(--shadow-soft);
+  overflow:hidden;
+  transition:transform .25s ease, box-shadow .25s ease;
+  color:inherit;
+}
+.km-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow);
+}
+
+.km-img-wrap{
+  position:relative;
+  height:190px;
+  background:#f4f4f4;
+}
+.km-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.km-badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:800;
+  background:rgba(245,158,11,.95);
+  color:#4a1d07;
+  border:1px solid rgba(255,255,255,.6);
+}
+.km-badge-green{
+  background:rgba(34,197,94,.95);
+  color:#053b1c;
+}
+
+.km-title{
+  font-weight:900;
+  line-height:1.15;
+  color:var(--ink);
+  margin-bottom:4px;
+}
+.km-meta{
+  color:var(--muted);
+  font-size:.95rem;
+}
+.km-stars{
+  margin-top:8px;
+  color:#f59e0b;
+  letter-spacing:1px;
+}
+.km-bottom{
+  border-top:1px dashed rgba(15,23,42,.15);
+  padding-top:10px;
+}
+.km-price{
+  font-weight:900;
+  color:#9a3412;
+}
+.km-more{
+  font-weight:800;
+  color:rgba(15,23,42,.75);
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.empty-soft{
+  border:2px dashed rgba(15,23,42,.22);
+  border-radius:16px;
+  padding:18px;
+  background:rgba(245,158,11,.07);
+  color:rgba(15,23,42,.75);
+}
+
+/* =========================
+   JOIN / COMMUNITY
+========================= */
+.join-box{
+  border-radius:22px;
+  background:
+    linear-gradient(120deg, rgba(194,65,12,.9), rgba(245,158,11,.75)),
+    url("hero-bg.jpg");
+  background-size:cover;
+  background-position:center;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.join-inner{
+  padding:54px 22px;
+  text-align:center;
+  color:#fff;
+}
+.join-title{
+  font-weight:950;
+  margin:0 0 12px;
+  font-size:clamp(1.6rem, 2.5vw, 2.2rem);
+  text-shadow:0 14px 32px rgba(0,0,0,.25);
+}
+.join-sub{
+  max-width:70ch;
+  margin:0 auto 18px;
+  color:rgba(255,255,255,.95);
+}
+.join-btn{
+  border-radius:14px;
+  font-weight:900;
+  padding:14px 24px;
+  box-shadow:0 14px 32px rgba(0,0,0,.25);
+}
+
+/* =========================================================
+   HOME "Препоръчани книги" — стил като books.php
+   (само badge "Препоръчана")
+========================================================= */
+.km-book-card{
+  border-radius:18px;
+  border:2px solid rgba(245,158,11,.35);
+  box-shadow:0 18px 40px rgba(2,6,23,.08);
+  overflow:hidden;
+}
+
+.km-book-cover{
+  background:#fff;
+}
+
+/* ✅✅✅ 1:1 IMAGE STYLE (like textbooks tb-img)
+   - whole image (no crop)
+   - same background
+   - same hover zoom + saturate
+*/
+.km-book-img{
+  width: 100%;
+  height: 250px;                 /* ✅ match textbooks home height */
+  object-fit: contain;           /* ✅ show whole image */
+  object-position: center;
+  background: rgba(241,245,249,.8);
+  display: block;
+
+  transform: scale(1);
+  transition: transform .25s ease, filter .25s ease;
+}
+
+.km-book-card:hover .km-book-img{
+  transform: scale(1.03);
+  filter: saturate(1.05);
+}
+
+.km-book-tags{
+  position:absolute;
+  top:12px;
+  left:12px;
+  z-index:2;
+}
+
+.km-tag-featured{
+  background:#fde68a;          /* оранжево/жълто */
+  color:#111827;              /* тъмен текст */
+  font-weight:900;
+  font-size:.78rem;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid #f59e0b;
+  box-shadow:0 6px 14px rgba(0,0,0,.12);
+}
+
+.km-book-body{
+  padding-top:10px;
+}
+
+.km-book-title{
+  font-weight:900;
+  font-size:1rem;
+  line-height:1.2;
+}
+
+.km-book-author{
+  color:rgba(15,23,42,.65);
+  margin-top:6px;
+  font-size:.95rem;
+}
+
+.km-book-desc{
+  color: rgba(15,23,42,.65);
+  margin-top: 8px;
+  font-size: .92rem;
+  line-height: 1.35;
+  overflow: hidden;
+
+  /* Modern standard */
+  display: -webkit-box;
+  display: box;
+  line-clamp: 3;
+
+  /* WebKit fallback (Chrome / Safari) */
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  min-height: 3.8em;
+}
+
+.km-book-stars{
+  color:#f59e0b;
+  margin-top:10px;
+  letter-spacing:1px;
+}
+
+.km-book-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:12px;
+}
+
+.km-book-price{
+  font-weight:900;
+  color:#9a3412;
+}
+
+.km-book-btn{
+  border-radius:12px;
+  padding:6px 14px;
+  font-weight:900;
+}
+
+section.home-section.home-section-books{
+  background: radial-gradient(900px 240px at 50% 0%,
+    rgba(245,158,11,.18),
+    rgba(255,255,255,1)
+  ) !important;
+}
+
+section.home-section.home-section-textbooks{
+  background: radial-gradient(900px 240px at 50% 0%,
+    rgba(124,58,237,.16),
+    rgba(255,255,255,1)
+  ) !important;
+}
+
+/* ✅ keep only height tweak per section (optional)
+   Images are already 1:1 via .km-book-img above.
+   If you want textbooks a tiny bit taller than books, keep this.
+   If not needed, you can delete this block entirely.
+*/
+#homeTextbooksGrid .km-book-img{
+  height: 250px;
+}
+
+/* =========================
+   HOME enter animations
+========================= */
+
+/* обща fade-up анимация */
+@keyframes km-fade-up {
+  from{
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HERO – по-бързо */
+.km-hero{
+  animation: km-fade-up .8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+/* FEATURES */
+.km-features{
+  animation: km-fade-up .7s cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: .15s;
+}
+
+/* HOME sections (книги, учебници, community) */
+.home-section{
+  animation: km-fade-up .7s cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: .25s;
+}
+
+/* карти – staggered ефект */
+.km-book-card{
+  opacity: 0;
+  animation: km-fade-up .55s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+/* малко забавяне за всяка карта */
+.km-book-card:nth-child(1){ animation-delay:.05s; }
+.km-book-card:nth-child(2){ animation-delay:.10s; }
+.km-book-card:nth-child(3){ animation-delay:.15s; }
+.km-book-card:nth-child(4){ animation-delay:.20s; }
+.km-book-card:nth-child(5){ animation-delay:.25s; }
+.km-book-card:nth-child(6){ animation-delay:.30s; }
+.km-book-card:nth-child(7){ animation-delay:.35s; }
+.km-book-card:nth-child(8){ animation-delay:.40s; }
+
+/* =========================
+   FLOAT animation for feature icons
+========================= */
+@keyframes km-icon-float{
+  0%   { transform: translateY(0) scale(1); }
+  50%  { transform: translateY(-8px) scale(1.06); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.km-icon-anim{
+  animation: km-icon-float 2.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* различни скорости (по-естествено) */
+.km-feature-icon.orange.km-icon-anim{ animation-duration: 2.2s; }
+.km-feature-icon.blue.km-icon-anim  { animation-duration: 2.6s; }
+.km-feature-icon.green.km-icon-anim { animation-duration: 3.0s; }
+.km-feature-icon.pink.km-icon-anim  { animation-duration: 2.8s; }
+
+/* optional: спира на hover върху картата */
+.km-feature:hover .km-icon-anim{
+  animation-play-state: paused;
+}
+
+/* second row under hero actions */
+.km-hero-actions-second{
+  margin-top: 12px;
+}
+
+/* optional: make gift button stand out a bit */
+.km-btn-gift{
+  background: rgba(255,255,255,.98);
+  border: 1px solid rgba(255,255,255,.70);
+  box-shadow: 0 16px 34px rgba(0,0,0,.26);
+}
+.km-btn-gift:hover{
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 22px 46px rgba(0,0,0,.32);
+}
+ 
+/* =========================
+   HERO buttons — perfect layout
+========================= */
+
+/* винаги позволяваме wrap + редовете да са подредени */
+.km-hero-actions{
+  flex-wrap: wrap !important;
+  row-gap: 12px;
+}
+
+/* ✅ Desktop (>= 992px): 4 бутона горе, "Подари книга" сам отдолу */
+@media (min-width: 992px){
+  /* да има място 4-те да се съберат удобно */
+  .km-hero-inner{ max-width: 980px; }
+
+  /* "Подари книга" на нов ред и центриран */
+  .km-hero-actions .km-btn-gift{
+    flex: 0 0 100%;
+    max-width: 260px;
+    margin: 12px auto 0;
+  }
+}
+
+/* ✅ Mobile/Tablet (< 992px): "Подари книга" да е до "Учебници втора ръка" */
+@media (max-width: 991.98px){
+  .km-hero-actions .km-btn-gift{
+    flex: 0 0 auto;
+    max-width: none;
+    margin: 0;
+  }
+}

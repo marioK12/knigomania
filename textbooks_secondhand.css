@@ -1,0 +1,600 @@
+/* =========================================================
+   textbooks_secondhand.css — "Учебници втора ръка" (Purple hero)
+   Работи с класовете в textbooks_secondhand.php:
+   tbs-hero, tbs-filter2, tbs-grid, tbs-card, btn-tbs-*
+   Bootstrap-friendly (не пипа navbar)
+   ========================================================= */
+
+:root{
+  --ink:#0f172a;
+  --muted:rgba(15,23,42,.62);
+
+  --card:rgba(255,255,255,.92);
+  --stroke:rgba(15,23,42,.10);
+
+  --shadow: 0 20px 60px rgba(2,6,23,.10);
+  --shadow2: 0 10px 24px rgba(2,6,23,.08);
+
+  --r:20px;
+
+  --vio1:#6d28d9; /* лилаво */
+  --vio2:#4f46e5; /* индиго */
+  --vio3:#2563eb; /* синьо */
+}
+
+/* =========================================================
+   Base / Layout
+   ========================================================= */
+.tbs-main{
+  background: #f8fafc;
+  padding: 26px 0 64px;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.tbs-hero{
+  position: relative;
+  padding: 64px 0 88px;
+  color: #fff;
+  background:
+    radial-gradient(1200px 500px at 20% 10%, rgba(255,255,255,.18), transparent 55%),
+    linear-gradient(135deg, var(--vio1), var(--vio2), var(--vio3));
+  overflow: hidden;
+}
+
+.tbs-hero-inner{ position: relative; z-index: 2; }
+
+.tbs-hero-icons{
+  font-size: 28px;
+  opacity: .95;
+  margin-bottom: 10px;
+}
+
+.tbs-hero-title{
+  font-weight: 900;
+  letter-spacing: .2px;
+  font-size: clamp(32px, 4.2vw, 54px);
+  margin: 0;
+  text-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+
+.tbs-hero-sub{
+  margin: 14px auto 0;
+  max-width: 700px;
+  padding: 10px 14px;
+  display: inline-block;
+  border-radius: 999px;
+  background: rgba(15,23,42,.20);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(8px);
+}
+
+.tbs-hero-wave{
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 56px;
+  background: #f8fafc;
+  border-top-left-radius: 40% 100%;
+  border-top-right-radius: 40% 100%;
+  transform: scaleX(1.25);
+  z-index: 1;
+}
+
+/* =========================================================
+   Filter v2 — като "Нови учебници"
+   (Това е което ползва твоят textbooks_secondhand.php)
+   ========================================================= */
+.tbs-filter2{
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.10);
+  border-radius: 22px;
+  box-shadow: 0 10px 24px rgba(2,6,23,.08);
+  padding: 18px;
+  margin-top: -46px; /* да влиза в hero */
+  position: relative;
+  z-index: 5;
+}
+
+.tbs-filter2-head{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+}
+
+.tbs-filter2-badge{
+  width: 40px; height: 40px;
+  display:grid; place-items:center;
+  border-radius: 14px;
+  background: rgba(109,40,217,.10);
+  border: 1px solid rgba(109,40,217,.18);
+  font-size: 18px;
+  flex: 0 0 auto;
+}
+
+.tbs-filter2-title{ min-width: 0; }
+
+.tbs-filter2-title-main{
+  font-weight: 1000;
+  color: rgba(15,23,42,.92);
+  line-height: 1.1;
+}
+.tbs-filter2-title-sub{
+  margin-top: 2px;
+  font-weight: 700;
+  color: rgba(15,23,42,.56);
+  font-size: .92rem;
+}
+
+.tbs-filter2-right{ margin-left: auto; }
+
+.tbs-label{
+  font-size: .92rem;
+  color: rgba(15,23,42,.75);
+  font-weight: 700;
+}
+
+.tbs-input{
+  border-radius: 14px;
+  border-color: rgba(15,23,42,.12);
+  box-shadow: none !important;
+}
+.tbs-input:focus{
+  border-color: rgba(109,40,217,.45);
+  box-shadow: 0 0 0 .25rem rgba(109,40,217,.12) !important;
+}
+
+.tbs-filter2-add{
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 900;
+  border: 1px solid rgba(255,255,255,.22);
+  color:#fff;
+  background: linear-gradient(135deg, rgba(109,40,217,.92), rgba(37,99,235,.92));
+  box-shadow: 0 10px 22px rgba(37,99,235,.18);
+}
+.tbs-filter2-add:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  color:#fff;
+}
+
+.tbs-filter2-go{
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-weight: 1000;
+  border: 1px solid rgba(109,40,217,.18);
+  background: rgba(109,40,217,.10);
+  color: #4c1d95;
+}
+.tbs-filter2-go:hover{ background: rgba(109,40,217,.14); }
+
+.tbs-filter2-clear{
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-weight: 900;
+  border: 1px solid rgba(15,23,42,.14);
+  background: rgba(255,255,255,.8);
+  color: rgba(15,23,42,.78);
+}
+.tbs-filter2-clear:hover{ background:#fff; }
+
+.tbs-found{
+  align-self: center;
+  color: rgba(15,23,42,.68);
+  font-weight: 700;
+}
+
+/* =========================================================
+   GRID
+   ========================================================= */
+.tbs-grid{
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 1200px){ .tbs-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px){ .tbs-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px){ .tbs-grid{ grid-template-columns: 1fr; } }
+
+/* =========================================================
+   CARD (base)
+   ========================================================= */
+.tbs-card{
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r);
+  box-shadow: var(--shadow2);
+  overflow: hidden;
+  will-change: transform, opacity;
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+
+/* =========================================================
+   Image area — показвай ЦЯЛАТА корица (contain)
+   ========================================================= */
+.tbs-card-img{
+  display:block;
+  position: relative;
+  height: 190px;
+  background: #f1f5f9;
+  overflow: hidden;
+
+  /* центриране */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ВАЖНО: contain, за да НЕ реже корицата */
+.tbs-card-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+  background: #f1f5f9;
+  display:block;
+
+  transition: transform .35s ease, filter .35s ease;
+}
+
+/* subtle shine overlay */
+.tbs-card-img::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(700px 220px at 10% 0%, rgba(255,255,255,.16), transparent 55%);
+  opacity: 0;
+  transition: opacity .25s ease;
+  pointer-events:none;
+}
+
+.tbs-chip{
+  position:absolute;
+  left: 12px;
+  top: 12px;
+  background: rgba(255,255,255,.88);
+  border: 1px solid rgba(15,23,42,.12);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: .78rem;
+  color: rgba(15,23,42,.82);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.tbs-card-body{ padding: 12px 12px 14px; }
+
+.tbs-card-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.tbs-title{
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.1;
+  transition: color .18s ease;
+}
+
+.tbs-author{
+  font-weight: 800;
+  color: rgba(15,23,42,.64);
+  font-size: .9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 45%;
+}
+
+.tbs-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tbs-cond{
+  display:inline-flex;
+  align-items:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: .75rem;
+  border: 1px solid rgba(15,23,42,.12);
+}
+
+.tbs-cond-new{
+  background: rgba(34,197,94,.10);
+  color: rgba(22,101,52,1);
+  border-color: rgba(34,197,94,.22);
+}
+.tbs-cond-vgood{
+  background: rgba(59,130,246,.10);
+  color: rgba(30,64,175,1);
+  border-color: rgba(59,130,246,.22);
+}
+.tbs-cond-good{
+  background: rgba(245,158,11,.10);
+  color: rgba(146,64,14,1);
+  border-color: rgba(245,158,11,.22);
+}
+.tbs-cond-ok{
+  background: rgba(148,163,184,.20);
+  color: rgba(15,23,42,.78);
+  border-color: rgba(148,163,184,.35);
+}
+.tbs-cond-bad{
+  background: rgba(239,68,68,.10);
+  color: rgba(153,27,27,1);
+  border-color: rgba(239,68,68,.22);
+}
+
+.tbs-seller{
+  color: rgba(15,23,42,.62);
+  font-weight: 700;
+  font-size: .9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 55%;
+}
+
+.tbs-card-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+}
+
+.tbs-price{
+  font-weight: 1000;
+  color: rgba(15,23,42,.92);
+  background: rgba(109,40,217,.08);
+  border: 1px solid rgba(109,40,217,.16);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.btn-tbs-more{
+  border-radius: 14px;
+  padding: 8px 12px;
+  font-weight: 900;
+  border: 1px solid rgba(109,40,217,.18);
+  background: rgba(109,40,217,.10);
+  color: #4c1d95;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.btn-tbs-more:hover{ background: rgba(109,40,217,.14); }
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+.tbs-empty{
+  grid-column: 1 / -1;
+  background: var(--card);
+  border: 1px dashed rgba(15,23,42,.18);
+  border-radius: var(--r);
+  padding: 28px;
+  text-align:center;
+  will-change: transform, opacity;
+}
+.tbs-empty-ico{ font-size: 36px; }
+.tbs-empty-title{ font-weight: 1000; color: var(--ink); margin-top: 6px; }
+.tbs-empty-sub{ color: rgba(15,23,42,.62); margin-top: 4px; }
+
+/* =========================================================
+   Page enter animations (Hero + Filter + Cards)
+   ========================================================= */
+@keyframes tbsFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tbsFadeDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tbsPop {
+  from { opacity: 0; transform: translateY(16px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* HERO enters */
+.tbs-hero .tbs-hero-icons,
+.tbs-hero .tbs-hero-title,
+.tbs-hero .tbs-hero-sub{
+  opacity: 0;
+  animation: tbsFadeDown .65s ease both;
+}
+.tbs-hero .tbs-hero-icons{ animation-delay: .05s; }
+.tbs-hero .tbs-hero-title{ animation-delay: .12s; }
+.tbs-hero .tbs-hero-sub{   animation-delay: .20s; }
+
+/* subtle wave motion */
+@keyframes tbsWaveFloat {
+  0%, 100% { transform: scaleX(1.25) translateY(0); }
+  50%      { transform: scaleX(1.25) translateY(3px); }
+}
+.tbs-hero-wave{
+  animation: tbsWaveFloat 5s ease-in-out infinite;
+}
+
+/* FILTER enters */
+.tbs-filter2{
+  opacity: 0;
+  animation: tbsPop .65s cubic-bezier(.2,.9,.2,1) both;
+  animation-delay: .18s;
+}
+
+/* CARDS stagger (работи, защото .tbs-card е директно в .tbs-grid) */
+.tbs-grid > .tbs-card{
+  opacity: 0;
+  animation: tbsFadeUp .55s ease both;
+}
+.tbs-grid > .tbs-card:nth-child(1){  animation-delay: .08s; }
+.tbs-grid > .tbs-card:nth-child(2){  animation-delay: .14s; }
+.tbs-grid > .tbs-card:nth-child(3){  animation-delay: .20s; }
+.tbs-grid > .tbs-card:nth-child(4){  animation-delay: .26s; }
+.tbs-grid > .tbs-card:nth-child(5){  animation-delay: .32s; }
+.tbs-grid > .tbs-card:nth-child(6){  animation-delay: .38s; }
+.tbs-grid > .tbs-card:nth-child(7){  animation-delay: .44s; }
+.tbs-grid > .tbs-card:nth-child(8){  animation-delay: .50s; }
+.tbs-grid > .tbs-card:nth-child(9){  animation-delay: .56s; }
+.tbs-grid > .tbs-card:nth-child(10){ animation-delay: .62s; }
+.tbs-grid > .tbs-card:nth-child(11){ animation-delay: .68s; }
+.tbs-grid > .tbs-card:nth-child(12){ animation-delay: .74s; }
+
+/* Empty enters */
+.tbs-empty{
+  opacity: 0;
+  animation: tbsFadeUp .6s ease both;
+  animation-delay: .18s;
+}
+
+/* =========================================================
+   Card hover effects (Учебници втора ръка)
+   ========================================================= */
+.tbs-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(109,40,217,.28);
+  box-shadow:
+    0 22px 60px rgba(2,6,23,.14),
+    0 10px 22px rgba(109,40,217,.18);
+}
+
+/* при contain zoom-а е лек, за да не изглежда "рязано" */
+.tbs-card:hover .tbs-card-img img{
+  transform: scale(1.04);
+  filter: contrast(1.02) saturate(1.05);
+}
+.tbs-card:hover .tbs-card-img::after{
+  opacity: 1;
+}
+
+.tbs-card:hover .tbs-chip{
+  transform: translateY(-1px) scale(1.03);
+  background: rgba(255,255,255,.95);
+  box-shadow: 0 10px 20px rgba(2,6,23,.10);
+}
+
+.tbs-card:hover .tbs-title{
+  color: rgba(76,29,149,1); /* deep purple */
+}
+
+.tbs-card:hover .btn-tbs-more{
+  transform: translateY(-1px);
+  background: rgba(109,40,217,.14);
+  border-color: rgba(109,40,217,.26);
+}
+
+/* focus-within (keyboard) */
+.tbs-card:focus-within{
+  transform: translateY(-6px);
+  border-color: rgba(109,40,217,.32);
+  box-shadow:
+    0 22px 60px rgba(2,6,23,.14),
+    0 10px 22px rgba(109,40,217,.18);
+}
+
+/* =========================================================
+   FIX: Navbar menu not clickable on textbooks pages
+   Причината: hero/wave слой стои над navbar и хваща кликове
+   ========================================================= */
+
+/* Само navbar (не пипаме всички деца!) */
+.navbar{
+  position: relative;
+  z-index: 3000;
+}
+
+/* dropdown менюто да е над всичко */
+.navbar .dropdown-menu{
+  z-index: 3100;
+}
+
+/* декоративните слоеве да не хващат кликове */
+.tbs-hero,
+.tbs-hero-wave,
+.tbs-hero-wave *{
+  pointer-events: none;
+}
+
+/* но ако имаш бутони/линкове в hero вътре – да си работят */
+.tbs-hero-inner,
+.tbs-hero-inner *{
+  pointer-events: auto;
+}
+
+
+/* ===============================
+   ❤️ Like (UI only) — secondhand cards
+================================ */
+.tbs-like{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  background:rgba(255,255,255,.92);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  z-index:5;
+
+  border:0;
+  padding:0;
+  outline:0;
+  user-select:none;
+}
+
+.tbs-like:hover{ transform:scale(1.08); }
+
+.tbs-like-ico{
+  width:20px;
+  height:20px;
+  fill:transparent;
+  stroke:#cbd5e1;
+  stroke-width:2;
+  transition:fill .2s ease, stroke .2s ease, transform .2s ease;
+}
+
+.tbs-like.is-active{
+  border-color: rgba(239,68,68,.35);
+}
+
+.tbs-like.is-active .tbs-like-ico{
+  fill:#ef4444;
+  stroke:#ef4444;
+  transform:scale(1.05);
+}
+
+/* важно: контейнерът за снимката да е relative */
+.tbs-card-img{ position: relative; }
+
+.tbs-card-link{
+  display:flex;
+  width:100%;
+  height:100%;
+  align-items:center;
+  justify-content:center;
+}
+.tbs-card-link img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  padding: 12px;
+}
+

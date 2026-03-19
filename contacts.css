@@ -1,0 +1,86 @@
+.hero-orange {
+  background: linear-gradient(135deg, #c2410c, #fb923c);
+}
+
+.box-ui {
+  background: #fff;
+  border: 2px solid #f59e0b;
+  border-radius: 16px;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.10),
+    0 0 0 1px rgba(245, 158, 11, 0.15);
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+.box-ui:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.16),
+    0 0 0 1px rgba(245, 158, 11, 0.25);
+}
+
+
+.info-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 22px;
+  flex: 0 0 auto;
+}
+
+.icon-orange { background: #f59e0b; }
+.icon-blue   { background: #3b82f6; }
+.icon-green  { background: #22c55e; }
+
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-fade {
+  opacity: 0;
+  animation: fadeUp 0.9s ease-out forwards;
+}
+
+.anim-delay-1 { animation-delay: .1s; }
+.anim-delay-2 { animation-delay: .2s; }
+.anim-delay-3 { animation-delay: .3s; }
+.anim-delay-4 { animation-delay: .4s; }
+.anim-delay-5 { animation-delay: .5s; }
+
+
+
+@keyframes iconFloat {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.06);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.contact-icon-anim {
+  animation: iconFloat 2.4s ease-in-out infinite;
+}
+
+/* различни скорости – по желание */
+.icon-orange.contact-icon-anim { animation-duration: 2.2s; }
+.icon-blue.contact-icon-anim   { animation-duration: 2.6s; }
+.icon-green.contact-icon-anim  { animation-duration: 3s; }
+
+
+

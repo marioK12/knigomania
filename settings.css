@@ -1,0 +1,117 @@
+/* settings.css */
+.km-wrap{ max-width: 1050px; }
+
+/* Hero */
+.km-hero{
+  border-radius: 22px;
+  padding: 26px;
+  background:
+    radial-gradient(1100px circle at 12% 12%, rgba(255, 211, 138, .35), transparent 60%),
+    radial-gradient(900px circle at 95% 0%, rgba(255, 255, 255, .18), transparent 55%),
+    linear-gradient(135deg, rgba(107,47,18,.95), rgba(138,63,22,.92));
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 18px 60px rgba(0,0,0,.22);
+  transform: translateY(6px);
+  opacity: 0;
+  animation: kmIn .55s ease-out forwards;
+}
+
+.km-title{ letter-spacing: -0.02em; }
+.km-hero-sub{ opacity: .85; }
+
+@keyframes kmIn{
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.km-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  padding: .45rem .7rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.92);
+  font-size: .85rem;
+}
+
+/* Cards */
+.km-card{
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.08);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  overflow: hidden;
+}
+.km-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 55px rgba(0,0,0,.12);
+  border-color: rgba(0,0,0,.10);
+}
+.km-subtle{
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.94));
+}
+
+.km-divider{ border-top: 1px solid rgba(0,0,0,.06); }
+
+/* Avatar */
+.km-avatar{
+  width: 86px;
+  height: 86px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,.35);
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+.km-avatar-fallback{
+  width: 86px;
+  height: 86px;
+  border-radius: 999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 800;
+  color: #2b1a10;
+  background: rgba(255, 211, 138, .55);
+  border: 3px solid rgba(255,255,255,.35);
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+
+.km-name{ font-size: 1.05rem; }
+
+/* Buttons */
+.km-btn{
+  border-radius: 14px;
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+.km-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.10);
+}
+.km-btn:active{
+  transform: translateY(0);
+  box-shadow:none;
+}
+
+/* Inputs */
+.form-control, .input-group-text{ border-radius: 14px; }
+.form-control:focus{
+  box-shadow: 0 0 0 .25rem rgba(245, 158, 11, .18);
+  border-color: rgba(245, 158, 11, .55);
+}
+
+/* Upload drop */
+.km-drop{
+  border: 1px dashed rgba(0,0,0,.20);
+  background: rgba(0,0,0,.02);
+  border-radius: 16px;
+  padding: 14px;
+  transition: border-color .18s ease, background .18s ease;
+}
+.km-drop:hover{
+  border-color: rgba(245, 158, 11, .75);
+  background: rgba(245, 158, 11, .06);
+}
+
+/* Alerts */
+.km-alert{ border-radius: 16px; }

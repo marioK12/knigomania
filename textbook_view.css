@@ -1,0 +1,651 @@
+/* =========================
+   textbook_view.css (CLEAN FINAL + SHARED) ✅ FIXED
+   - Shared for textbook_view.php + product.php
+   - Main actions only: Cart + Heart (row1) + Back (row2)
+   - Reviews: like/edit/delete + edit form styles
+   - Optional stack: .tv-rev-grid-stack
+========================= */
+
+:root{
+  --ink:#0f172a;
+  --muted: rgba(15,23,42,.65);
+
+  --p1:#5b21b6;
+  --p2:#7c3aed;
+  --p3:#2563eb;
+
+  --card: rgba(255,255,255,.92);
+  --stroke: rgba(15,23,42,.10);
+
+  --shadow: 0 18px 50px rgba(2,6,23,.10);
+  --shadow2: 0 10px 24px rgba(2,6,23,.08);
+
+  --r:18px;
+}
+
+/* =========================
+   LOAD ANIMATIONS (tv)
+========================= */
+@keyframes tvFadeUp{
+  from{ opacity:0; transform: translateY(14px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+@keyframes tvPop{
+  from{ opacity:0; transform: translateY(10px) scale(.985); }
+  to{ opacity:1; transform: translateY(0) scale(1); }
+}
+.d-none{ display:none !important; }
+
+/* =========================
+   PAGE BACKDROP
+========================= */
+body.km-layout{
+  color: var(--ink);
+  background:
+    radial-gradient(900px 420px at 12% 0%, rgba(124,58,237,.12), transparent 62%),
+    radial-gradient(900px 420px at 86% 6%, rgba(37,99,235,.10), transparent 62%),
+    linear-gradient(180deg, #f7f5ff, #ffffff 48%, #f6f7ff);
+}
+body.km-layout.tv-anim{
+  animation: tvFadeUp .55s ease-out both;
+}
+
+.tv-wrap{ padding: 42px 0 64px; }
+.tv-container{ max-width: 1120px; }
+
+/* =========================
+   GRID (desktop)
+========================= */
+.tv-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  align-items:start;
+}
+
+/* =========================
+   CARDS (tv + aliases for product.js markup)
+========================= */
+.tv-card,
+.km-card{
+  background: var(--card);
+  border: 1px solid rgba(124,58,237,.18);
+  border-radius: var(--r);
+  box-shadow: var(--shadow2);
+
+  opacity: 0;
+  animation: tvPop .5s ease-out forwards;
+}
+
+.tv-image-card,
+.km-img-card{ padding: 18px; animation-delay: .08s; }
+
+.tv-info-card,
+.km-card-lg{ padding: 22px 22px 20px; animation-delay: .16s; }
+
+/* if you use .reveal */
+.reveal{
+  opacity: 0;
+  animation: tvPop .5s ease-out forwards;
+}
+
+/* =========================
+   IMAGE BOX + MAIN IMAGE
+========================= */
+.tv-image-box{
+  border-radius: 14px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+}
+
+.tv-main-img,
+.km-product-img{
+  max-width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  display:block;
+}
+
+/* thumbs (tv + product aliases) */
+.tv-thumbs,
+.km-thumbnails{
+  display:flex;
+  justify-content:center;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.tv-thumb,
+.km-thumb{
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: 1px solid rgba(15,23,42,.10);
+  background: rgba(255,255,255,.92);
+  padding: 6px;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.tv-thumb:hover,
+.km-thumb:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(2,6,23,.10);
+}
+.tv-thumb img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+}
+.km-thumb{ object-fit: contain; }
+
+/* =========================
+   INFO TYPO (tv + product aliases)
+========================= */
+.tv-title,
+.km-title{
+  font-weight: 950;
+  font-size: 2rem;
+  line-height: 1.1;
+  margin: 2px 0 6px;
+}
+
+.tv-author{ color: var(--muted); font-weight: 800; font-size: .95rem; }
+.km-muted{ color: var(--muted); font-weight: 800; }
+
+.tv-rating,
+.km-rating{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  color: rgba(15,23,42,.75);
+  font-weight: 900;
+  font-size: .95rem;
+}
+.tv-stars,
+.km-stars{ letter-spacing: 1px; }
+
+.tv-badges{ display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 14px; }
+
+.tv-badge,
+.km-pill{
+  display:inline-flex;
+  align-items:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 950;
+  font-size: .82rem;
+  color: #3b1a86;
+  background: rgba(124,58,237,.12);
+  border: 1px solid rgba(124,58,237,.22);
+}
+.tv-badge-soft,
+.km-pill-outline{
+  color: rgba(15,23,42,.78);
+  background: rgba(15,23,42,.06);
+  border: 1px solid rgba(15,23,42,.10);
+}
+
+.tv-price,
+.km-price{
+  font-weight: 950;
+  font-size: 1.35rem;
+  color: #4c1d95;
+  margin: 6px 0 10px;
+}
+
+/* description */
+.tv-desc,
+.km-desc{
+  color: rgba(15,23,42,.72);
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0 0 16px;
+
+  opacity: 0;
+  animation: tvFadeUp .5s ease-out forwards;
+  animation-delay: .22s;
+}
+
+/* =========================
+   MAIN ACTIONS (Cart + Heart) + Back on new row
+   IMPORTANT: apply row2/back rules ONLY inside .tv-actions.km-actions
+   (so it won't break the "Редактирай моето ревю" block)
+========================= */
+.tv-actions{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-start !important;
+}
+
+/* stop generic km-fav push */
+.tv-actions .km-fav,
+.tv-actions .tv-fav{ margin-left: 0 !important; }
+
+/* base */
+.tv-btn{
+  border: 0;
+  border-radius: 14px;
+  padding: 9px 14px;
+  font-weight: 900;
+  font-size: .88rem;
+  text-decoration:none;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+
+  cursor:pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  white-space: nowrap;
+}
+
+/* cart */
+.tv-btn-cart,
+#addToCartBtn{
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: 1px solid rgba(16,185,129,.3);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(16,185,129,.22);
+
+  padding: 12px 18px;
+  font-size: .95rem;
+  font-weight: 950;
+
+  flex: 0 0 auto;
+  min-width: 0;
+}
+.tv-btn-cart:hover,
+#addToCartBtn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(16,185,129,.35);
+  filter: brightness(1.02);
+}
+#addToCartBtn.is-added{
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* fav */
+.tv-fav{
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  border:1px solid rgba(15,23,42,.12);
+  background:rgba(255,255,255,.92);
+  box-shadow:0 10px 18px rgba(2,6,23,.08);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  padding:0;
+  outline:0;
+  flex: 0 0 38px;
+}
+.tv-fav:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(2,6,23,.12);
+}
+.tv-fav-ico{
+  width:18px;
+  height:18px;
+  fill:transparent;
+  stroke:#cbd5e1;
+  stroke-width:2;
+  transition: fill .2s ease, stroke .2s ease, transform .2s ease;
+}
+.tv-fav.is-active{ border-color: rgba(239,68,68,.35); }
+.tv-fav.is-active .tv-fav-ico{
+  fill:#ef4444;
+  stroke:#ef4444;
+  transform:scale(1.06);
+}
+
+/* back */
+.tv-btn-ghost{
+  color: rgba(15,23,42,.78);
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15,23,42,.14);
+  width: fit-content;
+}
+.tv-btn-ghost:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 18px rgba(2,6,23,.10);
+}
+
+/* ✅ row ordering ONLY for the MAIN actions row */
+.tv-actions.km-actions .tv-btn-cart{ order: 1; }
+.tv-actions.km-actions .tv-fav{ order: 2; }
+.tv-actions.km-actions .tv-btn-ghost{
+  order: 3;
+  flex-basis: 100%;
+  width: fit-content;
+  align-self: flex-start;
+
+  padding: 4px 8px;
+  font-size: .75rem;
+  border-radius: 10px;
+}
+
+/* =========================
+   REVIEWS
+========================= */
+.tv-reviews{ margin-top: 22px; }
+
+.tv-rev-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items:start;
+}
+
+/* optional: stack */
+.tv-rev-grid.tv-rev-grid-stack{ grid-template-columns: 1fr !important; }
+
+.tv-rev-card{ padding: 18px; }
+
+/* stagger */
+.tv-reviews .tv-rev-card:nth-child(1){ animation-delay: .24s; }
+.tv-reviews .tv-rev-card:nth-child(2){ animation-delay: .32s; }
+
+.tv-rev-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom: 10px;
+}
+
+.tv-rev-title{
+  font-weight: 950;
+  font-size: 1.08rem;
+}
+
+.tv-stars-pick{
+  display:flex;
+  align-items:center;
+  gap: 6px;
+  margin: 10px 0 10px;
+  flex-wrap: wrap;
+}
+
+.tv-star{
+  border: 0;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgba(15,23,42,.25);
+  transition: transform .12s ease, color .12s ease;
+  padding: 0 2px;
+}
+.tv-star:hover{ transform: translateY(-1px); }
+.tv-star.is-on{ color: #f59e0b; }
+
+.tv-stars-hint{
+  margin-left: 10px;
+  color: rgba(15,23,42,.55);
+  font-weight: 800;
+  font-size: .92rem;
+}
+
+.tv-rev-text{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,.12);
+  padding: 12px 12px;
+  resize: vertical;
+  outline: none;
+  font-weight: 700;
+}
+.tv-rev-text:focus{
+  border-color: rgba(124,58,237,.45);
+  box-shadow: 0 0 0 .25rem rgba(124,58,237,.14);
+}
+
+.tv-publish{
+  width: 100%;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-weight: 950;
+  color:#fff;
+  background: linear-gradient(135deg, var(--p2), var(--p3));
+  box-shadow: 0 16px 28px rgba(124,58,237,.22);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.tv-publish:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 40px rgba(124,58,237,.28);
+}
+
+.tv-rev-note{
+  margin-top: 10px;
+  color: rgba(15,23,42,.55);
+  font-weight: 800;
+  font-size: .9rem;
+}
+.tv-rev-note.is-ok{ color: rgba(22,163,74,.95); }
+.tv-rev-note.is-warn{ color: rgba(220,38,38,.92); }
+
+.tv-rev-list{
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+
+.tv-rev-empty{
+  color: rgba(15,23,42,.55);
+  font-weight: 800;
+  padding: 8px 2px;
+}
+
+/* one review */
+.tv-one-rev{
+  border-top: 1px solid rgba(15,23,42,.08);
+  padding-top: 12px;
+}
+.tv-one-rev:first-child{
+  border-top: 0;
+  padding-top: 0;
+}
+
+.tv-one-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+}
+
+.tv-one-user{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tv-avatar-img{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid rgba(15,23,42,.10);
+  background: rgba(124,58,237,.10);
+  flex: 0 0 auto;
+}
+
+.tv-user-name{
+  font-weight: 950;
+  font-size: .95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+.tv-user-date{
+  color: rgba(15,23,42,.55);
+  font-weight: 800;
+  font-size: .82rem;
+}
+
+.tv-one-stars{
+  font-weight: 950;
+  color: rgba(15,23,42,.70);
+  letter-spacing: 1px;
+  flex: 0 0 auto;
+}
+
+.tv-one-text{
+  margin-top: 8px;
+  color: rgba(15,23,42,.78);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+/* =========================
+   REVIEW ACTIONS (LIKE / EDIT / DELETE)
+   ✅ force remove bootstrap boxed look
+========================= */
+.tv-rev-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+
+/* normalize buttons inside reviews */
+.tv-rev-actions button{
+  -webkit-appearance:none;
+  appearance:none;
+  box-shadow:none;
+  outline:none;
+}
+
+/* like pill */
+.tv-like{
+  border:1px solid rgba(15,23,42,.12);
+  background: rgba(255,255,255,.92);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 950;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.tv-like:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(2,6,23,.08);
+}
+.tv-like.is-on{
+  border-color: rgba(225,29,72,.35);
+  background: rgba(225,29,72,.06);
+}
+.tv-like[disabled]{ opacity:.55; cursor:not-allowed; }
+
+/* mini pills */
+.tv-mini-btn{
+  border:1px solid rgba(15,23,42,.12);
+  background: rgba(255,255,255,.92);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  text-decoration:none;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.tv-mini-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(2,6,23,.08);
+}
+
+/* focus ring */
+.tv-like:focus,
+.tv-mini-btn:focus{
+  box-shadow: 0 0 0 .25rem rgba(124,58,237,.12);
+}
+
+/* edit form */
+.tv-edit-form{
+  margin-top:10px;
+  border-top:1px dashed rgba(15,23,42,.12);
+  padding-top:10px;
+}
+.tv-edit-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+.tv-edit-stars button{
+  font-size:18px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  color: rgba(15,23,42,.25);
+  padding: 0 2px;
+}
+.tv-edit-stars button.is-on{ color:#f59e0b; }
+
+.tv-edit-actions{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 992px){
+  .tv-container{ max-width: 920px; }
+}
+
+@media (max-width: 768px){
+  .tv-wrap{ padding: 22px 0 44px; }
+
+  .tv-grid{ grid-template-columns: 1fr; gap: 16px; }
+
+  .tv-main-img,
+  .km-product-img{ max-height: 420px; }
+
+  .tv-rev-grid{ grid-template-columns: 1fr; gap: 16px; }
+
+  .tv-title,
+  .km-title{ font-size: 1.55rem; }
+
+  .tv-image-card,
+  .km-img-card{ padding: 14px; }
+
+  .tv-info-card,
+  .km-card-lg{ padding: 16px; }
+
+  .tv-rev-card{ padding: 16px; }
+
+  .tv-thumb,
+  .km-thumb{ width: 52px; height: 52px; }
+
+  .tv-actions{ gap: 8px; }
+}
+
+@media (max-width: 420px){
+  .tv-main-img,
+  .km-product-img{ max-height: 340px; }
+
+  .tv-stars-hint{ margin-left: 6px; }
+  .tv-user-name{ max-width: 160px; }
+
+  .tv-actions{ gap: 8px; }
+}
